@@ -1,9 +1,9 @@
 import { useState } from "react";
+import Input from "../components/Input";
 import Auth from "../config/auth";
 import PopupMessage from "../components/PopupMessage";
-import Input from "../components/Input";
 
-function Signup() {
+function Login() {
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
 
   const showPopup = (message, type) => {
@@ -12,53 +12,50 @@ function Signup() {
       setPopup((prev) => ({ ...prev, visible: false }));
     }, 3000);
   };
-
-  const submitHandler = (e) => {
+  const handler = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
+    const userData = {
+      username: formData.get("username"),
+      password: formData.get("password"),
+    };
+
     const username = formData.get("username")?.trim();
     const password = formData.get("password")?.trim();
-    const email = formData.get("email")?.trim();
-    const bio = formData.get("bio")?.trim();
-    const profile = formData.get("profile");
 
-    if (!username || !password || !email || !bio || !profile) {
+    if (!username || !password) {
       showPopup("Please fill in all fields", "error");
       return;
     }
-    const auth = new Auth();
-    auth.Signup(formData, showPopup);
-    e.target.reset();
+    const authConfig = new Auth();
+    authConfig.Login(userData, showPopup);
   };
   return (
     <div className="relative flex justify-center">
-      {popup.visible && (
-        <PopupMessage
-          message={popup.message}
-          className={
-            popup.type === "success" ? "text-green-600" : "text-red-600"
-          }
-        />
-      )}
       <form
-        onSubmit={submitHandler}
+        onSubmit={handler}
         className="flex flex-col items-center"
       >
+        {popup.visible && (
+          <PopupMessage
+            message={popup.message}
+            className={
+              popup.type === "success" ? "text-green-600" : "text-red-600"
+            }
+          />
+        )}
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />
-        <Input type="text" name="email" placeholder="email" />
-        <Input type="text" name="bio" placeholder="bio" />
-        <Input type="file" name="profile" />
         <button
           type="submit"
           className="font-bold bg-red-600 text-white p-2 rounded-md w-fit"
         >
-          Sign In
+          Login
         </button>
       </form>
     </div>
   );
 }
 
-export default Signup;
+export default Login;
