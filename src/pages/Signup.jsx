@@ -2,11 +2,12 @@ import { useState } from "react";
 import Auth from "../config/auth";
 import PopupMessage from "../components/PopupMessage";
 import Input from "../components/Input";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
-
+  const navigate = useNavigate();
+  
   const showPopup = (message, type) => {
     setPopup({ message, type, visible: true });
     setTimeout(() => {
@@ -14,7 +15,7 @@ function Signup() {
     }, 3000);
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -29,7 +30,14 @@ function Signup() {
       return;
     }
     const auth = new Auth();
-    auth.Signup(formData, showPopup);
+    const result = await auth.Signup(formData);
+    if (result.success) {
+      showPopup(result.message, "success");
+      navigate("/");
+    } else {
+      showPopup(result.message, "error");
+    }
+
     e.target.reset();
   };
   return (
@@ -42,11 +50,8 @@ function Signup() {
           }
         />
       )}
-     
-      <form
-        onSubmit={submitHandler}
-        className="flex flex-col items-center"
-      >
+
+      <form onSubmit={submitHandler} className="flex flex-col items-center">
         <h1 className="text-white text-4xl m-2 font-sans">Social Media</h1>
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />
@@ -59,7 +64,12 @@ function Signup() {
         >
           Sign In
         </button>
-        <p className="text-white m-1 font-sans">Have an account? <Link to="/" className="text-blue-400" >Log in</Link></p>
+        <p className="text-white m-1 font-sans">
+          Have an account?{" "}
+          <Link to="/login" className="text-blue-400">
+            Log in
+          </Link>
+        </p>
       </form>
     </div>
   );

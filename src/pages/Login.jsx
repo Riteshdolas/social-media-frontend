@@ -2,17 +2,19 @@ import { useState } from "react";
 import Input from "../components/Input";
 import Auth from "../config/auth";
 import PopupMessage from "../components/PopupMessage";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 function Login() {
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
-
+  const navigate = useNavigate();
+  
   const showPopup = (message, type) => {
     setPopup({ message, type, visible: true });
     setTimeout(() => {
       setPopup((prev) => ({ ...prev, visible: false }));
     }, 3000);
   };
-  const handler = (e) => {
+
+  const handler = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -29,22 +31,25 @@ function Login() {
       return;
     }
     const authConfig = new Auth();
-    authConfig.Login(userData, showPopup);
+    const result = await authConfig.Login(userData);
+   if (result.success) {
+      showPopup(result.message, "success");
+      navigate("/");
+    } else {
+      showPopup(result.message, "error");
+    }
   };
   return (
     <div className="relative rounded-md flex justify-center items-center bg-gray-950 h-[20rem] w-[25rem]">
       {popup.visible && (
-          <PopupMessage
-            message={popup.message}
-            className={
-              popup.type === "success" ? "text-green-600" : "text-red-600"
-            }
-          />
-        )}
-      <form
-        onSubmit={handler}
-        className="flex flex-col items-center"
-      >
+        <PopupMessage
+          message={popup.message}
+          className={
+            popup.type === "success" ? "text-green-600" : "text-red-600"
+          }
+        />
+      )}
+      <form onSubmit={handler} className="flex flex-col items-center">
         <h1 className="text-white text-4xl m-2 font-sans">Social Media</h1>
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />
@@ -54,7 +59,12 @@ function Login() {
         >
           Login
         </button>
-        <p className="text-white m-1 font-sans">Don't have and account?  <Link to="/signup" className="text-blue-400" >Sign up</Link></p>
+        <p className="text-white m-1 font-sans">
+          Don't have and account?{" "}
+          <Link to="/signup" className="text-blue-400">
+            Sign up
+          </Link>
+        </p>
       </form>
     </div>
   );

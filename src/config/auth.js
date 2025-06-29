@@ -1,6 +1,5 @@
 import PopupMessage from "../components/PopupMessage";
 class Auth {
-  
   async Signup(formData, showPopup) {
     const url = "http://localhost:8000/api/user/register";
     const options = {
@@ -11,26 +10,26 @@ class Auth {
     try {
       const res = await fetch(url, options);
       const data = await res.json();
-       
+
       if (res.ok) {
-        const token = data.token
-        localStorage.setItem("token", token)
-        showPopup("Logged In", "success");
+        const token = data.token;
+        localStorage.setItem("token", token);
+        return { success: true, message: "Signed up successfully" };
       } else {
-        showPopup(data.message || "Something went wrong", "error");
+        return { success: false, message: data.message || "Signup failed" };
       }
     } catch (error) {
       console.log(error);
-      showPopup(error.message);
+      return { success: false, message: error.message };
     }
   }
 
-  async Login(formData, showPopup) {
-    const url = "http://localhost:8000/api/user/login"
+  async Login(formData) {
+    const url = "http://localhost:8000/api/user/login";
     const options = {
       method: "POST",
       headers: {
-         "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     };
@@ -38,16 +37,17 @@ class Auth {
     try {
       const res = await fetch(url, options);
       const data = await res.json();
- 
+
       if (res.ok) {
-        const token = data.token
-        localStorage.setItem("token", token)
-        showPopup("Logged In", "success");
+        const token = data.token;
+        localStorage.setItem("token", token);
+        return { success: true, message: "Signed up successfully" };
       } else {
-        showPopup(data.error || "Something went wrong", "error");
+        return { success: false, message: data.error || "Signup failed" };
       }
     } catch (error) {
       console.log(error);
+      return { success: false, message: error.message };
     }
   }
 }
