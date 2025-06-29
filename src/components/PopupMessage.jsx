@@ -12,7 +12,7 @@ function PopupMessage({
  
     return (
         <div className={`${className} w-full h-[3rem] bg-white absolute font-bold text-2xl flex justify-center items-center transition-all duration-500 ease-in-out
-        animate-popup ${show ? "opacity-100 translate-y-0" : "opacity-0 translate-x-8"}`}>
+        animate-popup ${show ? "opacity-100 translate-y-3" : "opacity-0 translate-x-0"}`}>
             {message || "Something went wrong"}
         </div>
     )

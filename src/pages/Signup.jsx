@@ -2,6 +2,7 @@ import { useState } from "react";
 import Auth from "../config/auth";
 import PopupMessage from "../components/PopupMessage";
 import Input from "../components/Input";
+import { Link } from "react-router-dom";
 
 function Signup() {
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
@@ -32,7 +33,7 @@ function Signup() {
     e.target.reset();
   };
   return (
-    <div className="relative flex justify-center">
+    <div className="relative rounded-md flex justify-center items-center bg-gray-950 h-[25rem] w-[25rem]">
       {popup.visible && (
         <PopupMessage
           message={popup.message}
@@ -41,10 +42,12 @@ function Signup() {
           }
         />
       )}
+     
       <form
         onSubmit={submitHandler}
         className="flex flex-col items-center"
       >
+        <h1 className="text-white text-4xl m-2 font-sans">Social Media</h1>
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />
         <Input type="text" name="email" placeholder="email" />
@@ -52,10 +55,11 @@ function Signup() {
         <Input type="file" name="profile" />
         <button
           type="submit"
-          className="font-bold bg-red-600 text-white p-2 rounded-md w-fit"
+          className="font-bold bg-red-600 text-white p-2 m-1 rounded-md w-fit"
         >
           Sign In
         </button>
+        <p className="text-white m-1 font-sans">Have an account? <Link to="/" className="text-blue-400" >Log in</Link></p>
       </form>
     </div>
   );
