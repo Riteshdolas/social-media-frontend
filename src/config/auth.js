@@ -1,4 +1,3 @@
-import PopupMessage from "../components/PopupMessage";
 class Auth {
   async Signup(formData, showPopup) {
     const url = "http://localhost:8000/api/user/register";

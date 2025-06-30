@@ -1,18 +1,18 @@
-import LogoutBtn from "../components/LogoutBtn";
-import LoginBtn from "../components/LoginBtn";
-import SignupBtn from "../components/SignupBtn";
+import NavigateBtn from "../components/navigateBtn";
+
 
 function Home() {
   const isLoggedIn = !!localStorage.getItem("token");
+  NavigateBtn
   return (
     <>
       <div className="text-white text-8xl">Home</div>
       {isLoggedIn ? (
-        <LogoutBtn />
+        <NavigateBtn title="Log out" navigateTo="/login" token="token" />
       ) : (
         <>
-          <LoginBtn />
-          <SignupBtn />
+          <NavigateBtn title="Log in" navigateTo="/login" />
+          <NavigateBtn title="Sign up" navigateTo="/signup" />
         </>
       )}
     </>
