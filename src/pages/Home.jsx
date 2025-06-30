@@ -1,9 +1,8 @@
-import NavigateBtn from "../components/navigateBtn";
-
+import NavigateBtn from "../components/NavigateBtn";
 
 function Home() {
   const isLoggedIn = !!localStorage.getItem("token");
-  NavigateBtn
+  NavigateBtn;
   return (
     <>
       <div className="text-white text-8xl">Home</div>
