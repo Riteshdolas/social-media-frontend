@@ -41,7 +41,7 @@ function Signup() {
     e.target.reset();
   };
   return (
-    <div className="relative rounded-md flex justify-center items-center bg-gray-950 h-[25rem] w-[25rem]">
+    <div className="relative flex justify-self-center justify-center items-center h-screen w-full">
       {popup.visible && (
         <PopupMessage
           message={popup.message}
@@ -51,7 +51,8 @@ function Signup() {
         />
       )}
 
-      <form onSubmit={submitHandler} className="flex flex-col items-center">
+      <form onSubmit={submitHandler} className="flex flex-col bg-gray-950 h-[65%] p-5 rounded-md w-[90%]
+      md:h-[54%] md:w-[70%] lg:h-[60%] lg:w-[35%] items-center justify-center">
         <h1 className="text-white text-4xl m-2 font-sans">Social Media</h1>
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />

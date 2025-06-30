@@ -40,7 +40,7 @@ function Login() {
     }
   };
   return (
-    <div className="relative rounded-md flex justify-center items-center bg-gray-950 h-[20rem] w-[25rem]">
+    <div className="relativ h-screen w-full flex justify-self-center justify-center items-center">
       {popup.visible && (
         <PopupMessage
           message={popup.message}
@@ -49,7 +49,7 @@ function Login() {
           }
         />
       )}
-      <form onSubmit={handler} className="flex flex-col items-center">
+      <form onSubmit={handler} className="flex bg-gray-950 h-[37%] p-5 rounded-md w-[90%] md:h-[25%] md:w-[50%] lg:h-[45%] lg:w-[30%] flex-col items-center">
         <h1 className="text-white text-4xl m-2 font-sans">Social Media</h1>
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />
