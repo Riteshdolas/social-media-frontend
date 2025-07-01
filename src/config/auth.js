@@ -1,6 +1,6 @@
 class Auth {
   async Signup(formData, showPopup) {
-    const url = "http://localhost:8000/api/user/register";
+    const url = "https://social-media-backend-725o.onrender.com/api/user/register";
     const options = {
       method: "POST",
       body: formData,
@@ -24,7 +24,7 @@ class Auth {
   }
 
   async Login(formData) {
-    const url = "http://localhost:8000/api/user/login";
+    const url = "https://social-media-backend-725o.onrender.com/api/user/login";
     const options = {
       method: "POST",
       headers: {
