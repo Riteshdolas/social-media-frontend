@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 const otherUsers = [
-  { id: 2, name: "Aditi", avatar: "https://randomuser.me/api/portraits/women/21.jpg", storyImage: "https://i.pinimg.com/736x/ce/e0/ac/cee0ac73f77e665b76820e70feacd520.jpg" },
-  { id: 3, name: "Ravi", avatar: "https://randomuser.me/api/portraits/men/31.jpg", storyImage: "https://i.pinimg.com/736x/5c/56/32/5c563274dc0d04985d23f7d4ac0905ed.jpg" },
-  { id: 4, name: "Sana", avatar: "https://randomuser.me/api/portraits/women/41.jpg", storyImage: "https://i.pinimg.com/736x/78/4a/7e/784a7e1baf0fb1b8f6a0095e82cd2c12.jpg" },
+  { id: 2, name: "millie", avatar: "https://i.pinimg.com/736x/78/a2/a1/78a2a17a4c451597c30ecc900b4d61d5.jpg", storyImage: "https://i.pinimg.com/736x/bc/34/19/bc3419ffd409dd5c83fefe165baf9e95.jpg" },
+  { id: 3, name: "sadie sink", avatar: "https://i.pinimg.com/736x/bf/43/52/bf43520cd3fdac39fcc41509981b553d.jpg", storyImage: "https://i.pinimg.com/736x/d3/5b/18/d35b1846e6276af73117a771dcfce549.jpg" },
+  { id: 4, name: "sydney sweeney", avatar: "https://i.pinimg.com/736x/15/69/98/156998af993368d03b74704b4de5de9a.jpg", storyImage: "https://i.pinimg.com/736x/93/c7/31/93c73186a73f2f4e3b052be89b7bceed.jpg" },
 ];
 
 const Stories = () => {
