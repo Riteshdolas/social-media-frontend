@@ -1,10 +1,12 @@
 import React from "react";
 import { FaHome, FaSearch, FaPlusSquare, FaUser } from "react-icons/fa";
 import NavigateBtn from "../NavigateBtn";
+import { useNavigate } from "react-router";
 
 const Sidebar = () => {
   const isLoggedIn = !!localStorage.getItem("token");
   NavigateBtn;
+  const navigate = useNavigate()
   return (
     <div className="h-screen hidden fixed w-30 bg-gray-900 border-r md:flex flex-col justify-between items-center py-6 space-y-6 shadow-md">
       {/* Logo */}
@@ -12,16 +14,16 @@ const Sidebar = () => {
 
       {/* Icons */}
       <nav className="flex flex-col gap-8 text-2xl text-gray-600">
-        <button className="hover:text-blue-500">
+        <button onClick={() => navigate('/')} className="hover:text-blue-500">
           <FaHome />
         </button>
         <button className="hover:text-blue-500">
           <FaSearch />
         </button>
-        <button className="hover:text-blue-500">
+        <button onClick={() => navigate('/post')} className="hover:text-blue-500">
           <FaPlusSquare />
         </button>
-        <button className="hover:text-blue-500">
+        <button onClick={() => navigate('/profile')} className="hover:text-blue-500">
           <FaUser />
         </button>
       </nav>

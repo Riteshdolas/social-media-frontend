@@ -1,13 +1,9 @@
 import PostCard from "../components/Card";
-import MobileNav from "../components/header/MobileNav";
-import Sidebar from "../components/header/Nav";
 import Stories from "../components/Stories";
 
 function Home() {
   return (
-    <div className="flex min-h-screen">
-      <Sidebar />
-      <div className="flex-1 p-6">
+    <>
         <Stories />
         <PostCard
           username="millie"
@@ -37,9 +33,7 @@ function Home() {
           image="https://i.pinimg.com/736x/12/8c/97/128c9793be16830d5830973841ae9ce9.jpg"
           time="2-3-2025"
         />
-      </div>
-      <MobileNav />
-    </div>
+    </>
   );
 }
 
