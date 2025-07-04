@@ -9,7 +9,7 @@ const MobileNav = () => {
       <button onClick={() => navigate('/')} className="hover:text-blue-500">
         <FaHome />
       </button>
-      <button className="hover:text-blue-500">
+      <button onClick={() => navigate('/search')} className="hover:text-blue-500">
         <FaSearch />
       </button>
       <button onClick={() => navigate('/post')} className="hover:text-blue-500">

@@ -3,8 +3,7 @@ import NavigateBtn from "../components/NavigateBtn";
 import { useState, useEffect } from "react";
 function Profile() {
   const isLoggedIn = !!localStorage.getItem("token");
-  NavigateBtn;
-
+  NavigateBtn;  
   return (
     <div className="max-w-3xl mx-auto">
       {/* Profile Header */}

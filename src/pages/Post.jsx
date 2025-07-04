@@ -5,7 +5,7 @@ function Post() {
         e.preventDefault()
     }
   return (
-    <div className="relative flex justify-self-center justify-center items-center h-screen w-full">
+    <div className="relative flex justify-self-center justify-center items-center h-screen z-0 w-full">
       <form onSubmit={handler}
         className="flex flex-col bg-gray-950 h-[65%] p-5 rounded-md w-[90%]
       md:h-[54%] md:w-[70%] lg:h-[60%] lg:w-[35%] items-center justify-center"
