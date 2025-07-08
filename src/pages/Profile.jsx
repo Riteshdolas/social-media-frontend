@@ -16,11 +16,11 @@ function Profile() {
   }
   return (
     <div className="max-w-3xl mx-auto ">
-        <div className="ml-auto justify-self-end">
+        <div className="ml-auto w-full flex justify-end">
           {isLoggedIn ? (
             <NavigateBtn title="Log out" navigateTo="/login" token="token" />
           ) : (
-            <div className="m-1 flex flex-col gap-1">
+            <div className="m-1 flex gap-1">
               <NavigateBtn title="Log in" navigateTo="/login" />
               <NavigateBtn title="Sign up" navigateTo="/signup" />
             </div>
