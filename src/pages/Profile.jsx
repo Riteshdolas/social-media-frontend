@@ -15,7 +15,7 @@ function Profile() {
     );
   }
   return (
-    <div className="max-w-3xl mx-auto ">
+    <div className="max-w-3xl mx-auto md:pl-32 ">
         <div className="ml-auto w-full flex justify-end">
           {isLoggedIn ? (
             <NavigateBtn title="Log out" navigateTo="/login" token="token" />
