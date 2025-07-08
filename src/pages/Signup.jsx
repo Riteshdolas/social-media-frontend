@@ -3,11 +3,12 @@ import Auth from "../config/auth";
 import PopupMessage from "../components/PopupMessage";
 import Input from "../components/Input";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext.jsx"
 
 function Signup() {
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
   const navigate = useNavigate();
-  
+  const {setUser} = useUser()
   const showPopup = (message, type) => {
     setPopup({ message, type, visible: true });
     setTimeout(() => {
@@ -31,7 +32,9 @@ function Signup() {
     }
     const auth = new Auth();
     const result = await auth.Signup(formData);
+    
     if (result.success) {
+      setUser(result.user)
       showPopup(result.message, "success");
       navigate("/");
     } else {

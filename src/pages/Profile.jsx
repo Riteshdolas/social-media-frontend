@@ -1,22 +1,47 @@
 import React from "react";
 import NavigateBtn from "../components/NavigateBtn";
 import { useState, useEffect } from "react";
+import { useUser } from "../context/UserContext";
 function Profile() {
   const isLoggedIn = !!localStorage.getItem("token");
-  NavigateBtn;  
+  NavigateBtn;
+  const { user, loading } = useUser();
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+      </div>
+    );
+  }
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto ">
+        <div className="ml-auto justify-self-end">
+          {isLoggedIn ? (
+            <NavigateBtn title="Log out" navigateTo="/login" token="token" />
+          ) : (
+            <div className="m-1 flex flex-col gap-1">
+              <NavigateBtn title="Log in" navigateTo="/login" />
+              <NavigateBtn title="Sign up" navigateTo="/signup" />
+            </div>
+          )}
+        </div>
       {/* Profile Header */}
       <div className="flex items-center gap-4 mb-6">
         <img
-          src="https://i.pinimg.com/736x/bf/43/52/bf43520cd3fdac39fcc41509981b553d.jpg"
+          src={
+            user?.profilePicture ||
+            "https://i.pinimg.com/736x/76/f3/f3/76f3f3007969fd3b6db21c744e1ef289.jpg"
+          }
           alt="Profile"
           className="w-24 h-24 rounded-full object-cover"
         />
 
         <div className="flex flex-col gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-white">Sadie Sink</h2>
+            <h2 className="text-2xl font-bold text-white">
+              {user?.username || "user101"}
+            </h2>
           </div>
 
           {/* Stats */}
@@ -35,25 +60,11 @@ function Profile() {
             </div>
           </div>
         </div>
-
-        <div className="ml-auto">
-          {isLoggedIn ? (
-            <NavigateBtn title="Log out" navigateTo="/login" token="token" />
-          ) : (
-            <div className="m-1 flex flex-col gap-1">
-              <NavigateBtn title="Log in" navigateTo="/login" />
-              <NavigateBtn title="Sign up" navigateTo="/signup" />
-            </div>
-          )}
-        </div>
       </div>
 
       {/* Bio */}
       <div className="mb-6 text-white">
-        <p>
-          Catching sunsets and feelings 🌙🍃 <br />
-          Just not for people.
-        </p>
+        <p>{user?.bio || "bio"}</p>
       </div>
 
       {/* Posts Grid */}

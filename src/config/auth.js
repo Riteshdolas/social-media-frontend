@@ -13,7 +13,7 @@ class Auth {
       if (res.ok) {
         const token = data.token;
         localStorage.setItem("token", token);
-        return { success: true, message: "Signed up successfully" };
+        return { success: true, message: "Signed up successfully", user: data.savedUser };
       } else {
         return { success: false, message: data.message || "Signup failed" };
       }
