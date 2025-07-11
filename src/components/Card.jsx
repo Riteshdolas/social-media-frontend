@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaRegHeart, FaRegComment, FaRegShareSquare } from "react-icons/fa";
 
 const PostCard = ({ username, avatar, time, content, image }) => {
+  const [like, setLike] = useState(0)
+  
   return (
     <div className="max-w-md mt-1 mx-auto bg-gray-800 shadow-lg rounded-2xl p-4 mb-6">
       {/* Header */}
@@ -28,15 +30,21 @@ const PostCard = ({ username, avatar, time, content, image }) => {
       )}
 
       {/* Actions */}
-      <div className="flex justify-around mt-4 text-gray-600 text-xl">
+      <div className="flex items-end justify-around mt-4 text-gray-600 text-xl">
         <button className="hover:text-red-500">
-          <FaRegHeart />
+            {like}
+          <FaRegHeart onClick={() =>{ 
+            setLike(like + 1)
+             
+            }}  />
         </button>
         <button className="hover:text-blue-500">
-          <FaRegComment />
+          {12}
+          <FaRegComment onClick={() => console.log("add comment")}  />
         </button>
         <button className="hover:text-green-500">
-          <FaRegShareSquare />
+          {2}
+          <FaRegShareSquare onClick={() => console.log("shared")} />
         </button>
       </div>
     </div>

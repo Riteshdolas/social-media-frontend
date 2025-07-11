@@ -29,7 +29,7 @@ const SearchDrawer = ({ isOpen, onClose }) => {
 
     debounceRef.current = setTimeout(() => {
       searchUser(input);
-    }, 1000); // wait 500ms after typing stops
+    }, 500); // wait 500ms after typing stops
   };
 
   const searchUser = async (input) => {
