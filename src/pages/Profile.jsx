@@ -2,10 +2,12 @@ import React from "react";
 import NavigateBtn from "../components/NavigateBtn";
 import { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
+import { usePosts } from "../context/PostContext";
 function Profile() {
   const isLoggedIn = !!localStorage.getItem("token");
   NavigateBtn;
   const { user, loading } = useUser();
+  const { posts, postLoading } = usePosts();
 
   if (loading) {
     return (
@@ -14,18 +16,19 @@ function Profile() {
       </div>
     );
   }
+
   return (
     <div className="max-w-3xl mx-auto md:pl-32 ">
-        <div className="ml-auto w-full flex justify-end">
-          {isLoggedIn ? (
-            <NavigateBtn title="Log out" navigateTo="/login" token="token" />
-          ) : (
-            <div className="m-1 flex gap-1">
-              <NavigateBtn title="Log in" navigateTo="/login" />
-              <NavigateBtn title="Sign up" navigateTo="/signup" />
-            </div>
-          )}
-        </div>
+      <div className="ml-auto w-full flex justify-end">
+        {isLoggedIn ? (
+          <NavigateBtn title="Log out" navigateTo="/login" token="token" />
+        ) : (
+          <div className="m-1 flex gap-1">
+            <NavigateBtn title="Log in" navigateTo="/login" />
+            <NavigateBtn title="Sign up" navigateTo="/signup" />
+          </div>
+        )}
+      </div>
       {/* Profile Header */}
       <div className="flex items-center gap-4 mb-6">
         <img
@@ -69,11 +72,28 @@ function Profile() {
 
       {/* Posts Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-        <img
-          src="https://i.pinimg.com/736x/22/16/4a/22164af833bffcf2ff6a8e49a62973d3.jpg"
-          alt="Post"
-          className="rounded-lg object-cover h-40 w-full"
-        />
+        {postLoading ? (
+          <div className="col-span-full flex justify-center items-center py-10">
+            <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+          </div>
+        ) : posts.length === 0 ? (
+          <div className="col-span-full text-white text-center text-sm opacity-60">
+            No posts yet.
+          </div>
+        ) : (
+          posts.map((post, index) => (
+            <div key={post._id} className="relative group">
+              <img
+                src={post.post_url}
+                alt={`Post ${index + 1}`}
+                className="rounded-lg object-cover h-40 w-full"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm p-2 transition">
+                {post.caption || "No caption"}
+              </div>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
