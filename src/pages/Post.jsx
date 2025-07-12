@@ -89,7 +89,7 @@ function Post() {
         className="flex flex-col bg-gray-950 h-[65%] p-5 rounded-md w-[90%]
       md:h-[54%] md:w-[70%] lg:h-[60%] lg:w-[35%] items-center justify-center"
       >
-        <Input type="text" name="user_id" value={user_id} readOnly />
+        <Input type="text" name="user_id" value={user_id} readOnly className="hidden" />
         <Input type="file" name="post" />
         <Input type="text" name="caption" placeholder="caption" />
         <button

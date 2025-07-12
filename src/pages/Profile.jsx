@@ -76,7 +76,7 @@ function Profile() {
           <div className="col-span-full flex justify-center items-center py-10">
             <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
           </div>
-        ) : posts.length === 0 ? (
+        ) : !posts || posts.length === 0 ? (
           <div className="col-span-full text-white text-center text-sm opacity-60">
             No posts yet.
           </div>
