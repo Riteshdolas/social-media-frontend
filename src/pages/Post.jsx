@@ -23,6 +23,14 @@ function Post() {
     }
   }, [user]);
 
+  if (!loading && !user) {
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <p className="text-xl font-semibold text-red-500">You must be logged in to post.</p>
+    </div>
+  );
+}
+
   if (loading) {
     return (
       <div className="flex justify-center items-center h-screen">

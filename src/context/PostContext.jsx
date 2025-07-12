@@ -9,7 +9,6 @@ export function PostProvider({ children }) {
   const [postLoading, setLoading] = useState(true);
   const { user } = useUser();
 
-  
   const fetchUserPosts = async () => {
     if (!user?._id) return;
 
@@ -29,6 +28,7 @@ export function PostProvider({ children }) {
 
   const fetchAllPosts = async () => {
     try {
+      setLoading(true);
       const res = await fetch(
         "https://social-media-backend-725o.onrender.com/api/user/all/post"
       );
@@ -36,6 +36,8 @@ export function PostProvider({ children }) {
       setAllPosts(data.post);
     } catch (error) {
       console.error("Failed to fetch all posts:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
