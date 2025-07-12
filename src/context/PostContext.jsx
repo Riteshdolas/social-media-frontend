@@ -1,4 +1,3 @@
-// context/PostContext.js
 import { createContext, useContext, useEffect, useState } from "react";
 import { useUser } from "./UserContext";
 
@@ -8,32 +7,60 @@ export function PostProvider({ children }) {
   const [posts, setPosts] = useState([]);
   const [allPosts, setAllPosts] = useState([]);
   const [postLoading, setLoading] = useState(true);
-  const { user } = useUser()
+  const { user } = useUser();
 
- useEffect(() => {
-  if (!user?._id) return; // wait for user to be loaded
+  
+  const fetchUserPosts = async () => {
+    if (!user?._id) return;
 
-  fetch(`https://social-media-backend-725o.onrender.com/api/user/post/${user._id}`)
-    .then((res) => res.json())
-    .then((data) => {
-      setPosts(data.posts);  
+    try {
+      setLoading(true);
+      const res = await fetch(
+        `https://social-media-backend-725o.onrender.com/api/user/post/${user._id}`
+      );
+      const data = await res.json();
+      setPosts(data.posts);
+    } catch (error) {
+      console.error("Failed to fetch user posts:", error);
+    } finally {
       setLoading(false);
-    })
-    .catch(() => setLoading(false));
-}, [user]); // if `user` is available
+    }
+  };
 
-useEffect(() => {
-  fetch("https://social-media-backend-725o.onrender.com/api/user/all/post")
-    .then(res => res.json())
-    .then(data => {
+  const fetchAllPosts = async () => {
+    try {
+      const res = await fetch(
+        "https://social-media-backend-725o.onrender.com/api/user/all/post"
+      );
+      const data = await res.json();
       setAllPosts(data.post);
-    })
-    .catch(err => console.error(err));
-}, []);
+    } catch (error) {
+      console.error("Failed to fetch all posts:", error);
+    }
+  };
 
+  // Initial fetch when user is available
+  useEffect(() => {
+    if (user?._id) {
+      fetchUserPosts();
+    }
+  }, [user]);
+
+  // Fetch all posts once on mount
+  useEffect(() => {
+    fetchAllPosts();
+  }, []);
 
   return (
-    <PostContext.Provider value={{ posts, postLoading, allPosts }}>
+    <PostContext.Provider
+      value={{
+        posts,
+        allPosts,
+        postLoading,
+        fetchUserPosts,
+        fetchAllPosts,
+      }}
+    >
       {children}
     </PostContext.Provider>
   );

@@ -7,6 +7,7 @@ import { useUser } from "../context/UserContext.jsx"
 
 function Signup() {
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
+  const [loadingBtn, setLoadingBtn] = useState(false);
   const navigate = useNavigate();
   const {setUser} = useUser()
   const showPopup = (message, type) => {
@@ -18,6 +19,7 @@ function Signup() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    setLoadingBtn(true)
 
     const formData = new FormData(e.target);
     const username = formData.get("username")?.trim();
@@ -28,6 +30,7 @@ function Signup() {
 
     if (!username || !password || !email || !bio || !profile) {
       showPopup("Please fill in all fields", "error");
+      setLoadingBtn(false)
       return;
     }
     const auth = new Auth();
@@ -40,7 +43,7 @@ function Signup() {
     } else {
       showPopup(result.message, "error");
     }
-
+    setLoadingBtn(false)
     e.target.reset();
   };
   return (
@@ -63,11 +66,17 @@ function Signup() {
         <Input type="text" name="bio" placeholder="bio" />
         <Input type="file" name="profile" />
         <button
-          type="submit"
-          className="font-bold bg-red-600 text-white p-2 m-1 rounded-md w-fit"
-        >
-          Sign In
-        </button>
+  type="submit"
+  disabled={loadingBtn}
+  className="font-bold bg-red-600 text-white p-2 m-1 rounded-md w-fit flex items-center justify-center min-w-[80px]"
+>
+  {loadingBtn ? (
+    <div className="border-2 border-white border-t-transparent rounded-full w-5 h-5 animate-spin" />
+  ) : (
+    "Sign In"
+  )}
+</button>
+
         <p className="text-white m-1 font-sans">
           Have an account?{" "}
           <Link to="/login" className="text-blue-400">

@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Input from "../components/Input";
 import { useUser } from "../context/UserContext";
 import PopupMessage from "../components/PopupMessage";
+import { usePosts } from "../context/PostContext";
 
 function Post() {
   const { user, loading } = useUser();
+  const { fetchUserPosts, fetchAllPosts } = usePosts()
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
   const [user_id, setUserId] = useState("");
 
@@ -29,7 +31,7 @@ function Post() {
     );
   }
 
-  const handler = (e) => {
+  const handler = async (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
@@ -58,6 +60,8 @@ function Post() {
 
         if (res.ok) {
           showPopup(data.message, "success");
+          await fetchUserPosts()
+          await fetchAllPosts()
           return { success: true, message: "post created" };
         } else {
           showPopup(data.error, "failed");
