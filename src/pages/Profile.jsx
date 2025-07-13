@@ -3,11 +3,15 @@ import NavigateBtn from "../components/NavigateBtn";
 import { useState, useEffect } from "react";
 import { useUser } from "../context/UserContext";
 import { usePosts } from "../context/PostContext";
+import Form from "../components/form/Form";
+import { FaEdit } from "react-icons/fa";
+
 function Profile() {
   const isLoggedIn = !!localStorage.getItem("token");
   NavigateBtn;
   const { user, loading } = useUser();
   const { posts, postLoading } = usePosts();
+  const [showForm, setShowForm] = useState(false);
 
   if (loading) {
     return (
@@ -21,7 +25,15 @@ function Profile() {
     <div className="max-w-3xl mx-auto md:pl-32 ">
       <div className="ml-auto w-full flex justify-end">
         {isLoggedIn ? (
-          <NavigateBtn title="Log out" navigateTo="/login" token="token" />
+          <div className="flex gap-2">
+            <NavigateBtn title="Log out" navigateTo="/login" token="token" />
+            <button
+              onClick={() => setShowForm(true)}
+              className="bg-red-700 text-white p-3 rounded-4xl hover:bg-red-600"
+            >
+              <FaEdit />
+            </button>
+          </div>
         ) : (
           <div className="m-1 flex gap-1">
             <NavigateBtn title="Log in" navigateTo="/login" />
@@ -95,6 +107,7 @@ function Profile() {
           ))
         )}
       </div>
+      {showForm && <Form onClose={() => setShowForm(false)} />}
     </div>
   );
 }
