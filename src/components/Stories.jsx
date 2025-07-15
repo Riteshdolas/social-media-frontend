@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
 const otherUsers = [
-  { id: 2, name: "millie", avatar: "https://i.pinimg.com/736x/78/a2/a1/78a2a17a4c451597c30ecc900b4d61d5.jpg", storyImage: "https://i.pinimg.com/736x/bc/34/19/bc3419ffd409dd5c83fefe165baf9e95.jpg" },
-  { id: 3, name: "sadie sink", avatar: "https://i.pinimg.com/736x/bf/43/52/bf43520cd3fdac39fcc41509981b553d.jpg", storyImage: "https://i.pinimg.com/736x/d3/5b/18/d35b1846e6276af73117a771dcfce549.jpg" },
-  { id: 4, name: "sydney sweeney", avatar: "https://i.pinimg.com/736x/15/69/98/156998af993368d03b74704b4de5de9a.jpg", storyImage: "https://i.pinimg.com/736x/93/c7/31/93c73186a73f2f4e3b052be89b7bceed.jpg" },
+  { id: 2, name: "millie", avatar: "https://i.pinimg.com/736x/78/a2/a1/78a2a17a4c451597c30ecc900b4d61d5.jpg", storyImage: "https://i.pinimg.com/736x/a3/60/b5/a360b55056d0f5efe855c03191de733f.jpg" },
+  { id: 3, name: "sadie sink", avatar: "https://i.pinimg.com/736x/bf/43/52/bf43520cd3fdac39fcc41509981b553d.jpg", storyImage: "https://i.pinimg.com/736x/10/ac/3e/10ac3e4efdc31c302020ccdfff10a032.jpg" },
+  { id: 4, name: "sydney sweeney", avatar: "https://i.pinimg.com/736x/15/69/98/156998af993368d03b74704b4de5de9a.jpg", storyImage: "https://i.pinimg.com/736x/15/69/98/156998af993368d03b74704b4de5de9a.jpg" },
 ];
 
 const Stories = () => {
   const [yourStory, setYourStory] = useState(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [formImage, setFormImage] = useState("");
-  const [previewStory, setPreviewStory] = useState(null); // { name, image }
+  const [previewStory, setPreviewStory] = useState(null); 
 
   const handleAddStory = () => {
     if (!formImage) return;
@@ -105,8 +105,8 @@ const Stories = () => {
           onClick={() => setPreviewStory(null)}
           className="fixed inset-0 bg-black bg-opacity-80 flex justify-center items-center z-50 cursor-pointer"
         >
-          <div className="bg-white rounded-xl max-w-sm w-full p-4 shadow-xl">
-            <h3 className="text-gray-800 font-semibold mb-2 text-center">
+          <div className="bg-gray-900 rounded-xl max-w-sm w-full p-4 shadow-xl">
+            <h3 className="text-gray-600 font-semibold mb-2 text-center">
               {previewStory.name}
             </h3>
             <img
