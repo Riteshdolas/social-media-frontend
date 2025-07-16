@@ -1,12 +1,64 @@
-# React + Vite
+# 🌐 Social Media App – Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the **frontend client** for my social media app built with **React.js** and styled using **Tailwind CSS**.  
+It interacts with the backend API to support authentication, posting, and more.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
 
-## Expanding the ESLint configuration
+- **React.js**
+- **Tailwind CSS**
+- **React Router**
+- **Context API** 
+-  **Fetch API** (for making HTTP requests)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📦 Installation & Setup
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/Riteshdolas/social-media-frontend.git
+
+# 2. Navigate into the project folder
+cd social-media-frontend
+
+# 3. Install dependencies
+npm install
+
+# 4. Run the development server
+npm run dev
+```
+---
+
+## 🌍 Hosted Link
+<br>
+Frontend: https://social-media-frontend-ashy.vercel.app/
+<br>
+Backend API: https://social-media-backend-725o.onrender.com/
+
+---
+
+## ⚙️ Features Implemented
+
+- 🔐 User login & registration
+- 📝 Create posts with image upload
+- ❤️ Like & 💬 comment on posts
+- 👤 User profile view
+- 🔁 Follow/unfollow functionality
+
+⚠️ Note: The frontend is still in development — features like messaging, story viewer, and UI enhancements will be added soon.
+
+---
+# 📁 Folder Structure
+src/
+├── assets/            # Images, icons             
+├── components/        # UI components              
+├── context/           # Global auth & user state                
+├── pages/             # Route pages (Login, Register, Home, Profile)              
+├── utils/             # Fetch helper functions, constants        
+├── App.jsx          
+├── main.jsx        
+
+
