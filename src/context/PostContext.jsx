@@ -27,10 +27,16 @@ export function PostProvider({ children }) {
   };
 
   const fetchAllPosts = async () => {
+    const token = localStorage.getItem("token")
     try {
       setLoading(true);
       const res = await fetch(
-        "https://social-media-backend-725o.onrender.com/api/user/all/post"
+        "https://social-media-backend-725o.onrender.com/api/user/all/post",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const data = await res.json();
       setAllPosts(data.post);
