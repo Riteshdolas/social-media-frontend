@@ -53,7 +53,7 @@ Backend API: https://social-media-backend-725o.onrender.com/
 
 ---
 # 📁 Folder Structure
-src/
+src/        
 ├── assets/            # Images, icons             
 ├── components/        # UI components              
 ├── context/           # Global auth & user state                
