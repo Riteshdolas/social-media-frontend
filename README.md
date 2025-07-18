@@ -58,7 +58,7 @@ src/
 ├── components/        # UI components              
 ├── context/           # Global auth & user state                
 ├── pages/             # Route pages (Login, Register, Home, Profile)              
-├── utils/             # Fetch helper functions, constants        
+├── config/             # Fetch helper functions            
 ├── App.jsx          
 ├── main.jsx        
 
