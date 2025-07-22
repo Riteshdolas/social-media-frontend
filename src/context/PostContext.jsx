@@ -31,15 +31,10 @@ export function PostProvider({ children }) {
     try {
       setLoading(true);
       const res = await fetch(
-        "https://social-media-backend-725o.onrender.com/api/user/all/post",
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        "https://social-media-backend-725o.onrender.com/api/user/all/post"
       );
       const data = await res.json();
-      setAllPosts(data.post);
+      setAllPosts(data.post || []);
     } catch (error) {
       console.error("Failed to fetch all posts:", error);
     } finally {
@@ -56,10 +51,8 @@ export function PostProvider({ children }) {
 
   // Fetch all posts once on mount
   useEffect(() => {
-     if (user?._id) {
       fetchAllPosts();
-    }
-  }, [user]);
+  }, []);
 
   return (
     <PostContext.Provider
