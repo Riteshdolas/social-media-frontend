@@ -8,10 +8,10 @@ import { FaEdit } from "react-icons/fa";
 
 function Profile() {
   const isLoggedIn = !!localStorage.getItem("token");
-  NavigateBtn;
   const { user, loading } = useUser();
   const { posts, postLoading } = usePosts();
   const [showForm, setShowForm] = useState(false);
+  const [previewPost, setPreviewPost] = useState(null);
 
   if (loading) {
     return (
@@ -94,7 +94,11 @@ function Profile() {
           </div>
         ) : (
           posts.map((post, index) => (
-            <div key={post._id} className="relative group">
+            <div
+              onClick={() => setPreviewPost(post)}
+              key={post._id}
+              className="relative group"
+            >
               <img
                 src={post.post_url}
                 alt={`Post ${index + 1}`}
@@ -108,6 +112,29 @@ function Profile() {
         )}
       </div>
       {showForm && <Form onClose={() => setShowForm(false)} />}
+      {previewPost && (
+        <div
+          onClick={() => setPreviewPost(null)}
+          className="fixed inset-0 h-screen bg-gray-950 bg-opacity-80 flex justify-center items-center z-50"
+        >
+          <div className="bg-gray-900 p-3 rounded-lg h-[80%] mt-[-40px] max-w-md w-full">
+            <div className="flex justify-end">
+              <button
+                onClick={() => setPreviewPost(null)}
+                className="m-1 text-white rounded text-2xl"
+              >
+                x
+              </button>
+            </div>
+            <img
+              src={previewPost.post_url}
+              alt="Preview"
+              className="w-full object-cover h-[80%] rounded-lg"
+            />
+            <p className="mt-2 text-white font-sans">{previewPost.caption}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
