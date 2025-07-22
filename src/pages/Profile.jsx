@@ -5,6 +5,7 @@ import { useUser } from "../context/UserContext";
 import { usePosts } from "../context/PostContext";
 import Form from "../components/form/Form";
 import { FaEdit } from "react-icons/fa";
+import PostCard from "../components/Card";
 
 function Profile() {
   const isLoggedIn = !!localStorage.getItem("token");
@@ -117,7 +118,7 @@ function Profile() {
           onClick={() => setPreviewPost(null)}
           className="fixed inset-0 h-screen bg-gray-950 bg-opacity-80 flex justify-center items-center z-50"
         >
-          <div className="bg-gray-900 p-3 rounded-lg h-[80%] mt-[-40px] max-w-md w-full">
+          <div className="p-3 rounded-lg h-[80%] mt-[-40px] max-w-md w-full">
             <div className="flex justify-end">
               <button
                 onClick={() => setPreviewPost(null)}
@@ -126,12 +127,17 @@ function Profile() {
                 x
               </button>
             </div>
-            <img
-              src={previewPost.post_url}
-              alt="Preview"
-              className="w-full object-cover h-[80%] rounded-lg"
+            <PostCard
+              key={previewPost._id}
+              username={previewPost.user_id.username}
+              avatar={
+                previewPost.user_id?.profilePicture ||
+                "https://i.pinimg.com/736x/76/f3/f3/76f3f3007969fd3b6db21c744e1ef289.jpg"
+              }
+              content={previewPost.caption}
+              image={previewPost.post_url}
+              time={previewPost.createdAt}
             />
-            <p className="mt-2 text-white font-sans">{previewPost.caption}</p>
           </div>
         </div>
       )}
