@@ -70,4 +70,14 @@ This taught me how to structure reusable components, work with JWT-based authent
 
 The biggest challenge was building a scalable API and syncing frontend state with backend data in real time.
 
+<h2>🖼️ Screenshots</h2>
+
+<p float="left">
+  <img src="https://github.com/Riteshdolas/social-media-frontend/blob/fb758249a49ae7ec1cd95912d0b3a9fbe9c1b5f2/src/assets/Screenshot%202025-07-18%20195704.png?raw=true" width="45%" />
+  <img src="https://github.com/Riteshdolas/social-media-frontend/blob/97d46a0aabcfa46347799565a3fa3e14f20ab3b8/src/assets/Screenshot%202025-07-19%20150014.png" width="45%" />
+</p>
+<p float="left">
+  <img src="https://github.com/Riteshdolas/social-media-frontend/blob/fb758249a49ae7ec1cd95912d0b3a9fbe9c1b5f2/src/assets/Screenshot%202025-07-18%20195750.png?raw=true" width="45%" />
+  <img src="https://github.com/Riteshdolas/social-media-frontend/blob/fb758249a49ae7ec1cd95912d0b3a9fbe9c1b5f2/src/assets/Screenshot%202025-07-18%20195811.png?raw=true" width="45%" />
+</p>
 
