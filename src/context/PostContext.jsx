@@ -56,8 +56,10 @@ export function PostProvider({ children }) {
 
   // Fetch all posts once on mount
   useEffect(() => {
-    fetchAllPosts();
-  }, []);
+     if (user?._id) {
+      fetchAllPosts();
+    }
+  }, [user]);
 
   return (
     <PostContext.Provider

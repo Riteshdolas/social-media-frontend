@@ -4,13 +4,13 @@ const DataContext = createContext(null);
 
 export default function UserContext({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-   
+
     if (!token) {
-      setLoading(false)
+      setLoading(false);
       return;
     }
 
@@ -21,13 +21,16 @@ export default function UserContext({ children }) {
     })
       .then((res) => res.json())
       .then((data) => {
-
         if (data) {
           setUser(data);
         }
-        setLoading(false)
+        setLoading(false);
       })
-      .catch((err) => console.log("Failed to auto-login", err));
+      .catch((err) => {
+        console.log("Failed to auto-login", err);
+        setUser(null); // 🔥 important fallback
+        setLoading(false); // also important if fetch fails
+      });
   }, []);
 
   return (

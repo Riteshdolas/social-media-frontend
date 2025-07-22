@@ -3,9 +3,11 @@ import Input from "../components/Input";
 import Auth from "../config/auth";
 import PopupMessage from "../components/PopupMessage";
 import { Link, useNavigate } from "react-router-dom";
+import { useUser } from "../context/UserContext";
 function Login() {
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
   const navigate = useNavigate();
+  const { setUser } = useUser();
   const [loadingBtn, setLoadingBtn] = useState(false);
   const showPopup = (message, type) => {
     setPopup({ message, type, visible: true });
@@ -35,6 +37,19 @@ function Login() {
     const result = await authConfig.Login(userData);
     if (result.success) {
       showPopup(result.message, "success");
+      const res = await fetch(
+        "https://social-media-backend-725o.onrender.com/api/user/profile",
+        {
+          headers: {
+            Authorization: `Bearer ${result.token}`,
+          },
+        }
+      );
+
+      const data = await res.json();
+      if (data) {
+        setUser(data);
+      }
       navigate("/");
     } else {
       showPopup(result.message, "error");
