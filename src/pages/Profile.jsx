@@ -6,6 +6,7 @@ import { usePosts } from "../context/PostContext";
 import Form from "../components/form/Form";
 import { FaEdit } from "react-icons/fa";
 import PostCard from "../components/Card";
+import { AiOutlineCloseCircle } from "react-icons/ai";
 
 function Profile() {
   const isLoggedIn = !!localStorage.getItem("token");
@@ -118,13 +119,16 @@ function Profile() {
           onClick={() => setPreviewPost(null)}
           className="fixed inset-0 h-screen bg-gray-950 bg-opacity-80 flex justify-center items-center z-50"
         >
-          <div className="p-3 rounded-lg h-[80%] mt-[-40px] max-w-md w-full">
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="p-3 rounded-lg h-[80%] mt-[-40px] max-w-md w-full"
+          >
             <div className="flex justify-end">
               <button
                 onClick={() => setPreviewPost(null)}
                 className="m-1 text-white rounded text-2xl"
               >
-                x
+                <AiOutlineCloseCircle />
               </button>
             </div>
             <PostCard
