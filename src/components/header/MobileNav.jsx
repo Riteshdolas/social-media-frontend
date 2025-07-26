@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 const MobileNav = () => {
   const navigate = useNavigate();
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-gray-900 border-t shadow-md flex justify-around items-center h-14 text-xl text-gray-600">
+    <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-[#1c1c1e] border-t shadow-md flex justify-around items-center h-14 text-xl text-[#b0b0b0]">
       <button onClick={() => navigate("/")} className="hover:text-blue-500">
         <FaHome />
       </button>

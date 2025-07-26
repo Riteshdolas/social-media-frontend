@@ -58,7 +58,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto text-white p-4">
+    <div className="max-w-xl mx-auto text-[#f5f5f5] p-4">
       <h2 className="text-2xl font-semibold mb-4">Search Users</h2>
 
       <input
@@ -66,15 +66,15 @@ const SearchPage = () => {
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Enter username"
-        className="w-full p-2 rounded-md border border-gray-400 mb-4"
+        className="w-full p-2 rounded-md border border-[#2a2a2c] bg-[#2a2a2c] text-[#f5f5f5] mb-4"
       />
 
-      {loading && <p className="text-gray-400">Loading...</p>}
+      {loading && <p className="text-[#b0b0b0]">Loading...</p>}
       {error && <p className="text-red-400">{error}</p>}
 
       <div className="space-y-3">
         {results.map(user => (
-          <div key={user._id || user.id} className="flex items-center gap-4 p-2 bg-gray-800 rounded-md">
+          <div key={user._id || user.id} className="flex items-center gap-4 p-2 bg-[#2a2a2c] rounded-md">
             <img src={user.profilePicture || "https://via.placeholder.com/40"} alt={user.username} className="w-10 h-10 rounded-full" />
             <span>{user.username}</span>
           </div>
