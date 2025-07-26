@@ -31,7 +31,7 @@ function Profile() {
             <NavigateBtn title="Log out" navigateTo="/login" token="token" />
             <button
               onClick={() => setShowForm(true)}
-              className="bg-red-700 text-white p-3 rounded-4xl hover:bg-red-600"
+              className="border-solid border-2 border-[#e1306c] cursor-pointer transition-transform duration-200 hover:scale-105 text-[#f5f5f5] p-3 rounded-4xl "
             >
               <FaEdit />
             </button>

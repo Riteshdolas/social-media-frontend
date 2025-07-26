@@ -69,8 +69,8 @@ function Form({ onClose }) {
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-950 bg-opacity-50 flex justify-center p-2 items-center z-50">
-      <div className="bg-gray-900 text-white p-6 rounded-lg shadow-lg md:w-[50%] lg:w-[35%]">
+    <div className="fixed inset-0 bg-[#121212] bg-opacity-50 flex justify-center p-2 items-center z-50">
+      <div className="bg-[#1c1c1e] text-[#f5f5f5] p-6 rounded-lg shadow-lg md:w-[50%] lg:w-[35%]">
         <h2 className="text-xl mb-4 font-bold">Edit Profile</h2>
         <form onSubmit={handleSubmit}>
           <Input
@@ -111,13 +111,13 @@ function Form({ onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+              className="bg-[#2a2a2c] text-white px-4 py-2 rounded hover:bg-[#121212] ursor-pointer transition-transform duration-200 hover:scale-105"
             >
               Cancel
             </button>
             <button
               type="submit"
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 ursor-pointer transition-transform duration-200 hover:scale-105 "
             >
               {loadingBtn ? (
                 <div className="border-2 border-white border-t-transparent rounded-full w-5 h-5 animate-spin" />
