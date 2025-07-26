@@ -12,12 +12,12 @@ const Sidebar = () => {
   const navigate = useNavigate()
   return (
     <>
-    <div className="h-screen hidden z-30 fixed w-30 bg-gray-900 border-r md:flex flex-col justify-between items-center py-6 space-y-6 shadow-md">
+    <div className="h-screen hidden z-30 fixed w-30  bg-[#1c1c1e] border-r md:flex flex-col justify-between items-center py-6 space-y-6 shadow-md">
       {/* Logo */}
-      <div className="text-2xl font-bold text-center text-white">Spcial media</div>
+      <div className="text-2xl font-bold text-center text-[#f5f5f5]">Social Media</div>
 
       {/* Icons */}
-      <nav className="flex flex-col gap-8 text-2xl text-gray-600">
+      <nav className="flex flex-col gap-8 text-2xl text-[#b0b0b0]">
         <button onClick={() => navigate('/') } className="hover:text-blue-500">
           <FaHome />
         </button>

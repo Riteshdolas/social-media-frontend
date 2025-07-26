@@ -9,7 +9,7 @@ function NavigateBtn({title, className='', navigateTo, token , ...props }) {
         setUser(null)
         navigate(navigateTo)
     }
-    return <button className={`p-2 bg-red-700 hover:bg-red-600 rounded-md text-white ${className}`} onClick={handler}>{title}</button>
+    return <button className={`p-2 border-solid border-2 border-[#e1306c] cursor-pointer transition-transform duration-200 hover:scale-105 rounded-md text-[#f5f5f5] ${className}`} onClick={handler}>{title}</button>
 }
 
 export default NavigateBtn

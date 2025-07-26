@@ -56,31 +56,31 @@ function Profile() {
 
         <div className="flex flex-col gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-white">
+            <h2 className="text-2xl font-bold text-[#f5f5f5]">
               {user?.username || "user101"}
             </h2>
           </div>
 
           {/* Stats */}
-          <div className="flex gap-10 text-white mb-6">
+          <div className="flex gap-10 text-[#f5f5f5] mb-6">
             <div>
               <span className="font-bold">1</span>
-              <p className="text-sm text-gray-400">Posts</p>
+              <p className="text-sm text-[#b0b0b0]">Posts</p>
             </div>
             <div>
               <span className="font-bold">10.3k</span>
-              <p className="text-sm text-gray-400">Followers</p>
+              <p className="text-sm text-[#b0b0b0]">Followers</p>
             </div>
             <div>
               <span className="font-bold">205</span>
-              <p className="text-sm text-gray-400">Following</p>
+              <p className="text-sm text-[#b0b0b0]">Following</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bio */}
-      <div className="mb-6 text-white">
+      <div className="mb-6 text-[#f5f5f5]">
         <p>{user?.bio || "bio"}</p>
       </div>
 
@@ -91,7 +91,7 @@ function Profile() {
             <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
           </div>
         ) : !posts || posts.length === 0 ? (
-          <div className="col-span-full text-white text-center text-sm opacity-60">
+          <div className="col-span-full text-[#f5f5f5] text-center text-sm opacity-60">
             No posts yet.
           </div>
         ) : (
@@ -106,7 +106,7 @@ function Profile() {
                 alt={`Post ${index + 1}`}
                 className="rounded-lg object-cover h-40 w-full"
               />
-              <div className="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white text-sm p-2 transition">
+              <div className="absolute inset-0 bg-[#1c1c1e] bg-opacity-50 opacity-0 group-hover:opacity-75 flex items-center justify-center text-[#f5f5f5] text-sm p-2 transition">
                 {post.caption || "No caption"}
               </div>
             </div>
@@ -117,7 +117,7 @@ function Profile() {
       {previewPost && (
         <div
           onClick={() => setPreviewPost(null)}
-          className="fixed inset-0 h-screen bg-gray-950 bg-opacity-80 flex justify-center items-center z-50"
+          className="fixed inset-0 h-screen bg-[#121212] bg-opacity-80 flex justify-center items-center z-50"
         >
           <div
             onClick={(e) => e.stopPropagation()}
@@ -126,7 +126,7 @@ function Profile() {
             <div className="flex justify-end">
               <button
                 onClick={() => setPreviewPost(null)}
-                className="m-1 text-white rounded text-2xl"
+                className="m-1 text-[#f5f5f5] rounded text-2xl"
               >
                 <AiOutlineCloseCircle />
               </button>

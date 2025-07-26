@@ -59,10 +59,10 @@ function Signup() {
 
       <form
         onSubmit={submitHandler}
-        className="flex flex-col bg-gray-950 h-[65%] p-5 rounded-md w-[90%]
+        className="flex flex-col bg-[#1c1c1e] h-[65%] p-5 rounded-md w-[90%]
       md:h-[54%] md:w-[70%] lg:h-[60%] lg:w-[35%] items-center justify-center"
       >
-        <h1 className="text-white text-4xl m-2 font-sans">Social Media</h1>
+        <h1 className="text-[#f5f5f5] text-4xl m-2 font-sans">Social Media</h1>
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />
         <Input type="text" name="email" placeholder="email" />
@@ -71,16 +71,16 @@ function Signup() {
         <button
           type="submit"
           disabled={loadingBtn}
-          className="font-bold bg-red-600 text-white p-2 m-1 rounded-md w-fit flex items-center justify-center min-w-[80px]"
+          className="font-bold border-solid border-2 border-[#e1306c] cursor-pointer transition-transform duration-200 hover:scale-105  text-[#f5f5f5] p-2 m-1 rounded-md w-fit flex items-center justify-center min-w-[80px]"
         >
           {loadingBtn ? (
-            <div className="border-2 border-white border-t-transparent rounded-full w-5 h-5 animate-spin" />
+            <div className="border-2 border-[#f5f5f5] border-t-transparent rounded-full w-5 h-5 animate-spin" />
           ) : (
             "Sign In"
           )}
         </button>
 
-        <p className="text-white m-1 font-sans">
+        <p className="text-[#f5f5f5] m-1 font-sans">
           Have an account?{" "}
           <Link to="/login" className="text-blue-400">
             Log in

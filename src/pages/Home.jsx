@@ -14,7 +14,7 @@ function Home() {
           <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
         </div>
       ) : allPosts.length === 0 ? (
-        <div className="col-span-full text-white text-center text-sm opacity-60">
+        <div className="col-span-full text-[#f5f5f5] text-center text-sm opacity-60">
           No posts yet.
         </div>
       ) : (

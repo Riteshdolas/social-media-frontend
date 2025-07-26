@@ -38,7 +38,7 @@ const PostCard = ({ username, avatar, time, content, image }) => {
   }
 
   return (
-    <div className="max-w-md mt-1 mx-auto bg-gray-800 shadow-lg rounded-2xl p-4 mb-6">
+    <div className="max-w-md mt-1 mx-auto bg-[#1c1c1e] text-[#f5f5f5] shadow-lg rounded-2xl p-4 mb-6">
       {/* Header */}
       <div className="flex items-center space-x-4">
         <img
@@ -47,13 +47,13 @@ const PostCard = ({ username, avatar, time, content, image }) => {
           className="w-12 h-12 rounded-full object-cover"
         />
         <div>
-          <h2 className="text-lg text-white font-semibold">{username}</h2>
-          <p className="text-sm text-gray-500">{dayjs(time).fromNow()}</p>
+          <h2 className="text-lg text-[#f5f5f5] font-semibold">{username}</h2>
+          <p className="text-sm text-[#b0b0b0]">{dayjs(time).fromNow()}</p>
         </div>
       </div>
 
       {/* Post Content */}
-      <div className="mt-4 text-white">{content}</div>
+      <div className="mt-4 text-[#f5f5f5]">{content}</div>
 
       {/* Optional Image */}
       {image && (
@@ -63,13 +63,13 @@ const PostCard = ({ username, avatar, time, content, image }) => {
       )}
 
       {/* Actions */}
-      <div className="flex items-end justify-around mt-4 text-gray-600 text-xl">
-        <button className="hover:text-red-500 transition-colors duration-200">
+      <div className="flex items-end justify-around mt-4 text-[#b0b0b0] text-xl">
+        <button className="hover:text-[#e1306c] transition-colors duration-200">
           {like}
           {liked === true ? (
             <FaHeart
               onClick={handleLikes}
-              className="text-red-500 cursor-pointer transition-transform duration-200 hover:scale-110"
+              className="text-[#e1306c] cursor-pointer transition-transform duration-200 hover:scale-110"
             />
           ) : (
             <FaRegHeart
@@ -78,13 +78,19 @@ const PostCard = ({ username, avatar, time, content, image }) => {
             />
           )}
         </button>
-        <button className="hover:text-blue-500">
+        <button className="hover:text-blue-500 transition-colors duration-200">
           {12}
-          <FaRegComment onClick={() => console.log("add comment")} />
+          <FaRegComment
+            className="cursor-pointer transition-transform duration-200 hover:scale-110"
+            onClick={() => console.log("add comment")}
+          />
         </button>
-        <button className="hover:text-green-500">
+        <button className="hover:text-green-500 transition-colors duration-200">
           {2}
-          <FaRegShareSquare onClick={() => sharePost()} />
+          <FaRegShareSquare
+            className="cursor-pointer transition-transform duration-200 hover:scale-110"
+            onClick={() => sharePost()}
+          />
         </button>
       </div>
     </div>

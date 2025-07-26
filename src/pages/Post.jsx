@@ -6,7 +6,8 @@ import { usePosts } from "../context/PostContext";
 
 function Post() {
   const { user, loading } = useUser();
-  const { fetchUserPosts, fetchAllPosts } = usePosts()
+  const { fetchUserPosts, fetchAllPosts } = usePosts();
+  const [loadingBtn, setLoadingBtn] = useState(false);
   const [popup, setPopup] = useState({ message: "", type: "", visible: false });
   const [user_id, setUserId] = useState("");
 
@@ -24,12 +25,14 @@ function Post() {
   }, [user]);
 
   if (!loading && !user) {
-  return (
-    <div className="flex justify-center items-center h-screen">
-      <p className="text-xl font-semibold text-red-500">You must be logged in to post.</p>
-    </div>
-  );
-}
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-xl font-semibold text-red-500">
+          You must be logged in to post.
+        </p>
+      </div>
+    );
+  }
 
   if (loading) {
     return (
@@ -41,15 +44,17 @@ function Post() {
 
   const handler = async (e) => {
     e.preventDefault();
+    setLoadingBtn(true);
 
     const formData = new FormData(e.target);
-    const post = formData.get("post")
-    const caption = formData.get("caption")
+    const post = formData.get("post");
+    const caption = formData.get("caption");
 
     const token = localStorage.getItem("token");
 
-    if(!post || !caption) {
+    if (!post || !caption) {
       showPopup("Please fill in all fields", "error");
+      setLoadingBtn(false);
       return;
     }
 
@@ -63,21 +68,27 @@ function Post() {
 
     const postData = async () => {
       try {
-        const res = await fetch("https://social-media-backend-725o.onrender.com/api/user/post", option);
+        const res = await fetch(
+          "https://social-media-backend-725o.onrender.com/api/user/post",
+          option
+        );
         const data = await res.json();
 
         if (res.ok) {
           showPopup(data.message, "success");
-          await fetchUserPosts()
-          await fetchAllPosts()
+          await fetchUserPosts();
+          await fetchAllPosts();
+          setLoadingBtn(false);
           return { success: true, message: "post created" };
         } else {
           showPopup(data.error, "failed");
+          setLoadingBtn(false);
           return { success: false, message: data.error || "try again later" };
         }
-
+        setLoadingBtn(false);
       } catch (error) {
         console.log("error: ", error);
+        setLoadingBtn(false);
         return { success: false, message: error.message };
       }
     };
@@ -98,17 +109,27 @@ function Post() {
       )}
       <form
         onSubmit={handler}
-        className="flex flex-col bg-gray-950 h-[65%] p-5 rounded-md w-[90%]
+        className="flex flex-col bg-[#1c1c1e] h-[65%] p-5 rounded-md w-[90%]
       md:h-[54%] md:w-[70%] lg:h-[60%] lg:w-[35%] items-center justify-center"
       >
-        <Input type="text" name="user_id" value={user_id} readOnly className="hidden" />
+        <Input
+          type="text"
+          name="user_id"
+          value={user_id}
+          readOnly
+          className="hidden"
+        />
         <Input type="file" name="post" />
         <Input type="text" name="caption" placeholder="caption" />
         <button
           type="submit"
-          className="font-bold bg-red-600 text-white p-2 m-1 rounded-md w-fit"
+          className="font-bold border-solid border-2 border-[#e1306c] cursor-pointer transition-transform duration-200 hover:scale-105 text-[#f5f5f5] p-2 m-1 rounded-md w-fit"
         >
-          Post
+          {loadingBtn ? (
+            <div className="border-2 border-[#f5f5f5] border-t-transparent rounded-full w-5 h-5 animate-spin" />
+          ) : (
+            "Post"
+          )}
         </button>
       </form>
     </div>
