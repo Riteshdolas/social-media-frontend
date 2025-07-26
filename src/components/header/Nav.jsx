@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaHome, FaSearch, FaPlusSquare, FaUser } from "react-icons/fa";
+import { BiSolidMessageDots } from "react-icons/bi";
 import NavigateBtn from "../NavigateBtn";
 import { useNavigate } from "react-router";
 import SearchDrawer from "../Search";
@@ -22,6 +23,9 @@ const Sidebar = () => {
         </button>
         <button onClick={() => setShowSearch(true)} className="hover:text-blue-500">
           <FaSearch />
+        </button>
+        <button className="hover:text-blue-500">
+          <BiSolidMessageDots />
         </button>
         <button onClick={() => navigate('/post')} className="hover:text-blue-500">
           <FaPlusSquare />
