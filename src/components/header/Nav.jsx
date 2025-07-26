@@ -24,7 +24,7 @@ const Sidebar = () => {
         <button onClick={() => setShowSearch(true)} className="hover:text-blue-500">
           <FaSearch />
         </button>
-        <button className="hover:text-blue-500">
+        <button onClick={() => navigate('/messages')} className="hover:text-blue-500">
           <BiSolidMessageDots />
         </button>
         <button onClick={() => navigate('/post')} className="hover:text-blue-500">

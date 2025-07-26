@@ -6,6 +6,7 @@ import Layout from "./components/Layout"
 import Profile from "./pages/Profile"
 import Post from "./pages/Post"
 import SearchPage from "./pages/SearchPage"
+import ConversationsList from "./pages/messages/ConversationsList"
 function App() {
 
   return (
@@ -18,6 +19,7 @@ function App() {
          <Route path="/profile" element={<Profile />} />
          <Route path="/post" element={<Post />} />
          <Route path="/search" element={<SearchPage />} />
+         <Route path="/messages" element={<ConversationsList />} />
         </Route>
       </Routes>
     </>

@@ -20,6 +20,7 @@ const MobileNav = () => {
         <FaPlusSquare />
       </button>
       <button
+        onClick={() => navigate('/messages')}
         className="hover:text-blue-500"
       >
         <BiSolidMessageDots />
