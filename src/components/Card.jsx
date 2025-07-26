@@ -5,6 +5,9 @@ import {
   FaRegComment,
   FaRegShareSquare,
 } from "react-icons/fa";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
 
 const PostCard = ({ username, avatar, time, content, image }) => {
   const [like, setLike] = useState(0);
@@ -20,19 +23,19 @@ const PostCard = ({ username, avatar, time, content, image }) => {
   };
 
   function sharePost() {
-  if (navigator.share) {
-    navigator.share({
-      title: 'Check this post!',
-      text: 'I found this awesome post. Have a look:',
-      url: window.location.href  // current page link
-    })
-    .then(() => console.log('Shared successfully'))
-    .catch((error) => console.log('Error sharing:', error));
-  } else {
-    alert('Sharing not supported in your browser');
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Check this post!",
+          text: "I found this awesome post. Have a look:",
+          url: window.location.href, // current page link
+        })
+        .then(() => console.log("Shared successfully"))
+        .catch((error) => console.log("Error sharing:", error));
+    } else {
+      alert("Sharing not supported in your browser");
+    }
   }
-}
-
 
   return (
     <div className="max-w-md mt-1 mx-auto bg-gray-800 shadow-lg rounded-2xl p-4 mb-6">
@@ -45,7 +48,7 @@ const PostCard = ({ username, avatar, time, content, image }) => {
         />
         <div>
           <h2 className="text-lg text-white font-semibold">{username}</h2>
-          <p className="text-sm text-gray-500">{time}</p>
+          <p className="text-sm text-gray-500">{dayjs(time).fromNow()}</p>
         </div>
       </div>
 
@@ -64,9 +67,15 @@ const PostCard = ({ username, avatar, time, content, image }) => {
         <button className="hover:text-red-500 transition-colors duration-200">
           {like}
           {liked === true ? (
-            <FaHeart onClick={handleLikes} className="text-red-500 cursor-pointer transition-transform duration-200 hover:scale-110" />
+            <FaHeart
+              onClick={handleLikes}
+              className="text-red-500 cursor-pointer transition-transform duration-200 hover:scale-110"
+            />
           ) : (
-            <FaRegHeart onClick={handleLikes} className="cursor-pointer transition-transform duration-200 hover:scale-110" />
+            <FaRegHeart
+              onClick={handleLikes}
+              className="cursor-pointer transition-transform duration-200 hover:scale-110"
+            />
           )}
         </button>
         <button className="hover:text-blue-500">
