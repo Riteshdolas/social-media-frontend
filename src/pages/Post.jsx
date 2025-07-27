@@ -123,7 +123,7 @@ function Post() {
         <Input type="text" name="caption" placeholder="caption" />
         <button
           type="submit"
-          className="font-bold border-solid border-2 border-[#e1306c] cursor-pointer transition-transform duration-200 hover:scale-105 text-[#f5f5f5] p-2 m-1 rounded-md w-fit"
+          className="font-bold border-solid border-2 font-poppins border-[#e1306c] cursor-pointer transition-transform duration-200 hover:scale-105 text-[#f5f5f5] p-2 m-1 rounded-md w-fit"
         >
           {loadingBtn ? (
             <div className="border-2 border-[#f5f5f5] border-t-transparent rounded-full w-5 h-5 animate-spin" />

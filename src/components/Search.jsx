@@ -92,7 +92,7 @@ const SearchDrawer = ({ isOpen, onClose }) => {
 
         <div className="space-y-3">
           {results.map((user) => (
-            <div key={user._id || user.id} className="flex items-center gap-4 p-2 bg-[#2a2a2c] rounded-md">
+            <div key={user._id || user.id} className="flex font-poppins font-semibold items-center gap-4 p-2 bg-[#2a2a2c] rounded-md">
               <img
                 src={user.profilePicture || "https://via.placeholder.com/40"}
                 alt={user.username}
