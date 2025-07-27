@@ -56,7 +56,7 @@ function Profile() {
 
         <div className="flex flex-col gap-4">
           <div>
-            <h2 className="text-2xl font-bold text-[#f5f5f5]">
+            <h2 className="text-2xl font-poppins font-bold text-[#f5f5f5]">
               {user?.username || "user101"}
             </h2>
           </div>
@@ -64,23 +64,23 @@ function Profile() {
           {/* Stats */}
           <div className="flex gap-10 text-[#f5f5f5] mb-6">
             <div>
-              <span className="font-bold">1</span>
-              <p className="text-sm text-[#b0b0b0]">Posts</p>
+              <span className="font-bold font-inter">1</span>
+              <p className="text-sm font-rubik text-[#b0b0b0]">Posts</p>
             </div>
             <div>
-              <span className="font-bold">10.3k</span>
-              <p className="text-sm text-[#b0b0b0]">Followers</p>
+              <span className="font-bold font-inter">10.3k</span>
+              <p className="text-sm font-rubik text-[#b0b0b0]">Followers</p>
             </div>
             <div>
-              <span className="font-bold">205</span>
-              <p className="text-sm text-[#b0b0b0]">Following</p>
+              <span className="font-bold font-inter">205</span>
+              <p className="text-sm font-rubik text-[#b0b0b0]">Following</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* Bio */}
-      <div className="mb-6 text-[#f5f5f5]">
+      <div className="mb-6 font-rubik font-medium text-[#f5f5f5]">
         <p>{user?.bio || "bio"}</p>
       </div>
 
@@ -106,7 +106,7 @@ function Profile() {
                 alt={`Post ${index + 1}`}
                 className="rounded-lg object-cover h-40 w-full"
               />
-              <div className="absolute inset-0 bg-[#1c1c1e] bg-opacity-50 opacity-0 group-hover:opacity-75 flex items-center justify-center text-[#f5f5f5] text-sm p-2 transition">
+              <div className="absolute inset-0 font-inter font-light bg-[#1c1c1e] bg-opacity-50 opacity-0 group-hover:opacity-75 flex items-center justify-center text-[#f5f5f5] text-sm p-2 transition">
                 {post.caption || "No caption"}
               </div>
             </div>

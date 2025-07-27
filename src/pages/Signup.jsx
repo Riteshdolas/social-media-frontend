@@ -62,7 +62,7 @@ function Signup() {
         className="flex flex-col bg-[#1c1c1e] h-[65%] p-5 rounded-md w-[90%]
       md:h-[54%] md:w-[70%] lg:h-[60%] lg:w-[35%] items-center justify-center"
       >
-        <h1 className="text-[#f5f5f5] text-4xl m-2 font-sans">Social Media</h1>
+        <h1 className="text-[#f5f5f5] text-4xl m-2 mb-5 font-playwrite font-bold">Tillugram</h1>
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />
         <Input type="text" name="email" placeholder="email" />
@@ -80,9 +80,9 @@ function Signup() {
           )}
         </button>
 
-        <p className="text-[#f5f5f5] m-1 font-sans">
+        <p className="text-[#f5f5f5] m-1 font-inter">
           Have an account?{" "}
-          <Link to="/login" className="text-blue-400">
+          <Link to="/login" className="text-blue-400 font-inter">
             Log in
           </Link>
         </p>

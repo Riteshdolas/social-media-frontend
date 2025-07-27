@@ -71,11 +71,11 @@ const SearchDrawer = ({ isOpen, onClose }) => {
   return (
     <div
       className={`fixed top-0 left-0 h-full w-80 bg-[#1c1c1e] text-[#f5f5f5] transform transition-transform duration-300 z-10 shadow-lg ${
-        isOpen ? "translate-x-30" : "-translate-x-full"
+        isOpen ? "translate-x-34" : "-translate-x-full"
       }`}
     >
       <div className="flex justify-between items-center p-4 border-b border-[#2a2a2c]">
-        <h2 className="text-lg font-semibold">Search Users</h2>
+        <h2 className="text-lg font-light font-poppins">Search Users</h2>
         <button onClick={onClose} className="text-[#f5f5f5] text-xl">×</button>
       </div>
       <div className="p-4">
@@ -84,10 +84,10 @@ const SearchDrawer = ({ isOpen, onClose }) => {
           value={query}
           onChange={handleSearch}
           placeholder="Search by username..."
-          className="w-full p-2 rounded-md border border-[#2a2a2c] bg-[#2a2a2c] text-[#f5f5f5] mb-4"
+          className="w-full p-2 rounded-md border font-rubik border-[#2a2a2c] bg-[#2a2a2c] text-[#f5f5f5] mb-4"
         />
 
-        {loading && <p className="text-[#b0b0b0]">Loading...</p>}
+        {loading && <p className="text-[#b0b0b0] font-sans">Loading...</p>}
         {error && !loading && <p className="text-red-400">{error}</p>}
 
         <div className="space-y-3">

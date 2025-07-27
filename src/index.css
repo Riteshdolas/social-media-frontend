@@ -17,3 +17,19 @@ body{
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.font-poppins {
+  font-family: 'Poppins', sans-serif;
+}
+
+.font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.font-rubik {
+  font-family: 'Rubik', sans-serif;
+}
+
+.font-playwrite {
+  font-family: 'Playwrite HU', cursive;
+}

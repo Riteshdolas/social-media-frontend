@@ -47,13 +47,13 @@ const PostCard = ({ username, avatar, time, content, image }) => {
           className="w-12 h-12 rounded-full object-cover"
         />
         <div>
-          <h2 className="text-lg text-[#f5f5f5] font-semibold">{username}</h2>
-          <p className="text-sm text-[#b0b0b0]">{dayjs(time).fromNow()}</p>
+          <h2 className="text-lg text-[#f5f5f5] font-poppins font-semibold">{username}</h2>
+          <p className="text-sm font-rubik text-[#b0b0b0]">{dayjs(time).fromNow()}</p>
         </div>
       </div>
 
       {/* Post Content */}
-      <div className="mt-4 text-[#f5f5f5]">{content}</div>
+      <div className="mt-4 font-inter text-[#f5f5f5]">{content}</div>
 
       {/* Optional Image */}
       {image && (

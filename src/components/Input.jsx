@@ -4,7 +4,7 @@ function Input({type, name, placeholder, className="", ...props}) {
       type={type}
       name={name}
       placeholder={placeholder}
-      className={`bg-[#2a2a2c] text-[#f5f5f5] border-solid border-1 border-[#2a2a2c] w-full p-2 rounded-md m-1 ${className}`}
+      className={`bg-[#2a2a2c] font-rubik font-thin text-[#f5f5f5] border-solid border-1 border-[#2a2a2c] w-full p-2 rounded-md m-1 ${className}`}
       {...props}
     />
   );

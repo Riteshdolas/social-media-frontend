@@ -70,7 +70,7 @@ function Login() {
         onSubmit={handler}
         className="flex bg-[#1c1c1e] h-[37%] p-5 rounded-md w-[90%] md:h-[25%] md:w-[50%] lg:h-[45%] lg:w-[30%] flex-col items-center"
       >
-        <h1 className="text-[#f5f5f5] text-4xl m-2 font-sans">Social Media</h1>
+        <h1 className="text-[#f5f5f5] text-4xl m-2 mb-5 font-playwrite font-bold">Tillugram</h1>
         <Input type="text" name="username" placeholder="username" />
         <Input type="text" name="password" placeholder="password" />
         <button
@@ -84,9 +84,9 @@ function Login() {
             "Log In"
           )}
         </button>
-        <p className="text-[#f5f5f5] m-1 font-sans">
+        <p className="text-[#f5f5f5] m-1 font-inter">
           Don't have and account?{" "}
-          <Link to="/signup" className="text-blue-400">
+          <Link to="/signup" className="text-blue-400 font-inter">
             Sign up
           </Link>
         </p>
