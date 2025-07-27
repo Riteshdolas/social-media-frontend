@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaHome, FaSearch, FaPlusSquare, FaUser } from "react-icons/fa";
+import { FaHome, FaSearch, FaPlusSquare, FaUser, FaRegHeart } from "react-icons/fa";
 import { BiSolidMessageDots } from "react-icons/bi";
 import NavigateBtn from "../NavigateBtn";
 import { useNavigate } from "react-router";
@@ -29,6 +29,9 @@ const Sidebar = () => {
         </button>
         <button onClick={() => navigate('/post')} className="hover:text-blue-500">
           <FaPlusSquare />
+        </button>
+        <button className="hover:text-blue-500">
+          <FaRegHeart />
         </button>
         <button onClick={() => navigate('/profile')} className="hover:text-blue-500">
           <FaUser />
