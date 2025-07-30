@@ -7,6 +7,7 @@ import Profile from "./pages/Profile"
 import Post from "./pages/Post"
 import SearchPage from "./pages/SearchPage"
 import ConversationsList from "./pages/messages/ConversationsList"
+import ChatPage from "./pages/messages/ChatPage"
 function App() {
 
   return (
@@ -19,7 +20,7 @@ function App() {
          <Route path="/profile" element={<Profile />} />
          <Route path="/post" element={<Post />} />
          <Route path="/search" element={<SearchPage />} />
-         <Route path="/messages" element={<ConversationsList />} />
+         <Route path="/messages" element={<ChatPage />} />
         </Route>
       </Routes>
     </>
