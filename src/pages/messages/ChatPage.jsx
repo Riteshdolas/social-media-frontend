@@ -1,23 +1,25 @@
 import { useEffect, useRef, useState } from "react";
 import { FaArrowUpFromBracket } from "react-icons/fa6";
-import {io} from "socket.io-client"
+import { io } from "socket.io-client";
 import Input from "../../components/Input";
 
 export default function ChatPage() {
-    const socket = io("https://social-media-backend-725o.onrender.com/")
-    const [message, setMessage] = useState([])
-    const [input, setInput] = useState("")
+  const socket = io("https://social-media-backend-725o.onrender.com", {
+    transports: ["websocket"],
+  });
+  const [message, setMessage] = useState([]);
+  const [input, setInput] = useState("");
 
-    useEffect(() => {
-        socket.on("message", (msg) => {
-            setMessage((prev) => [...prev, msg] )
-        })
-    }, [])
+  useEffect(() => {
+    socket.on("message", (msg) => {
+      setMessage((prev) => [...prev, msg]);
+    });
+  }, []);
 
-    const sendMessage = () => {
-      socket.emit("message", input)
-      setInput("")
-    }
+  const sendMessage = () => {
+    socket.emit("message", input);
+    setInput("");
+  };
 
   return (
     <>
@@ -27,16 +29,19 @@ export default function ChatPage() {
         ))}
       </div>
 
-      <div className="justify-self-center md:mt-10 flex w-[50%] justify-center">       
-          <Input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="send message"
-          />
-          <button onClick={sendMessage} className="text-white rounded-full bg-[#2a2a2c] w-10 flex justify-center items-center">
-            <FaArrowUpFromBracket />
-          </button>
+      <div className="justify-self-center md:mt-10 flex w-[50%] justify-center">
+        <Input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="send message"
+        />
+        <button
+          onClick={sendMessage}
+          className="text-white rounded-full bg-[#2a2a2c] w-10 flex justify-center items-center"
+        >
+          <FaArrowUpFromBracket />
+        </button>
       </div>
     </>
   );
