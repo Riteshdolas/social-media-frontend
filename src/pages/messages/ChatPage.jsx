@@ -29,7 +29,7 @@ export default function ChatPage() {
         ))}
       </div>
 
-      <div className="justify-self-center md:mt-10 flex w-[50%] justify-center">
+      <div className="justify-self-center md:mt-10 flex w-full md:w-[50%] justify-center">
         <Input
           type="text"
           value={input}
