@@ -7,20 +7,21 @@ import {
 } from "react-icons/fa";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import LikeButton from "./LikeBtn";
 dayjs.extend(relativeTime);
 
-const PostCard = ({ username, avatar, time, content, image }) => {
-  const [like, setLike] = useState(0);
-  const [liked, setLiked] = useState(false);
-
-  const handleLikes = () => {
-    if (liked) {
-      setLike(like - 1);
-    } else {
-      setLike(like + 1);
-    }
-    setLiked(!liked);
-  };
+const PostCard = ({ username, avatar, time, content, image, postId, likeCount, userHasLiked, currentUser, initialLikeId }) => {
+//   const [like, setLike] = useState(0);
+//   const [liked, setLiked] = useState(false);
+// //  console.log("postid: ", postId)
+//   const handleLikes = () => {
+//     if (liked) {
+//       setLike(like - 1);
+//     } else {
+//       setLike(like + 1);
+//     }
+//     setLiked(!liked);
+//   };
 
   function sharePost() {
     if (navigator.share) {
@@ -64,7 +65,7 @@ const PostCard = ({ username, avatar, time, content, image }) => {
 
       {/* Actions */}
       <div className="flex items-end justify-around mt-4 text-[#b0b0b0] text-xl">
-        <button className="hover:text-[#e1306c] transition-colors duration-200">
+        {/* <button className="hover:text-[#e1306c] transition-colors duration-200">
           {like}
           {liked === true ? (
             <FaHeart
@@ -77,7 +78,14 @@ const PostCard = ({ username, avatar, time, content, image }) => {
               className="cursor-pointer transition-transform duration-200 hover:scale-110"
             />
           )}
-        </button>
+        </button> */}
+        <LikeButton
+          postId={postId}
+          initialLikes={likeCount}
+          initialLiked={userHasLiked}
+          initialLikeId={initialLikeId}
+          userId={currentUser}
+        />
         <button className="hover:text-blue-500 transition-colors duration-200">
           {12}
           <FaRegComment
