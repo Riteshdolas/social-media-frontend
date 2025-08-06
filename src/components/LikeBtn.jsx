@@ -1,5 +1,5 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const LikeButton = ({
   initialLiked,
@@ -12,6 +12,13 @@ const LikeButton = ({
   const [likesCount, setLikesCount] = useState(initialLikes || 0);
   const [likeId, setLikeId] = useState(initialLikeId || null);
   const [loading, setLoading] = useState(false);
+
+
+  useEffect(() => {
+    setLiked(initialLiked);
+    setLikesCount(initialLikes || 0);
+    setLikeId(initialLikeId || null);
+  }, [initialLiked, initialLikes, initialLikeId]);
 
   const handleLikes = async () => {
     if (!userId || loading) return; // prevent spamming
@@ -26,42 +33,44 @@ const LikeButton = ({
           return;
         }
 
-        const res = await fetch(`https://social-media-backend-725o.onrender.com/api/user/like/${likeId}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        });
+        const res = await fetch(
+          `https://social-media-backend-725o.onrender.com/api/user/like/${likeId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
 
         const data = await res.json();
 
         if (res.ok) {
-          setLiked(false);
-          setLikeId(null);
-          setLikesCount((prev) => prev - 1); // decrement locally
+          setLiked(data.userHasLiked);  
+          setLikeId(data._id || null);
+          setLikesCount(data.likesCount); 
         } else {
           console.error("Failed to unlike:", data);
         }
       } else {
-        // ✅ Like
-        // console.log("Liking post:", { post_id: postId });
-
-        const res = await fetch(`https://social-media-backend-725o.onrender.com/api/user/like`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ post_id: postId }),
-        });
-// console.log("Sending token:", localStorage.getItem("token"));
+        const res = await fetch(
+          `https://social-media-backend-725o.onrender.com/api/user/like`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ post_id: postId }),
+          }
+        );
 
         const data = await res.json();
 
         if (res.ok) {
-          setLiked(true);
-          setLikeId(data._id); // ✅ this is returned from backend
-          setLikesCount((prev) => prev + 1); // increment locally
+          setLiked(data.userHasLiked);
+          setLikeId(data._id || null);
+          setLikesCount(data.likesCount);
         } else {
           console.error("Failed to like:", data);
         }

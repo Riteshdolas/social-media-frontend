@@ -131,17 +131,23 @@ function Profile() {
                 <AiOutlineCloseCircle />
               </button>
             </div>
-            <PostCard
-              key={previewPost._id}
-              username={previewPost.user_id.username}
-              avatar={
-                previewPost.user_id?.profilePicture ||
-                "https://i.pinimg.com/736x/76/f3/f3/76f3f3007969fd3b6db21c744e1ef289.jpg"
-              }
-              content={previewPost.caption}
-              image={previewPost.post_url}
-              time={previewPost.createdAt}
-            />
+
+          <PostCard
+            key={previewPost._id}
+            username={previewPost.user_id.username}
+            avatar={
+              previewPost.user_id?.profilePicture ||
+              "https://i.pinimg.com/736x/76/f3/f3/76f3f3007969fd3b6db21c744e1ef289.jpg"
+            }
+            content={previewPost.caption}
+            image={previewPost.post_url}
+            time={previewPost.createdAt}
+            postId={previewPost._id}
+            likeCount={previewPost.likesCount}
+            userHasLiked={previewPost.userHasLiked}
+            initialLikeId={previewPost.likeId}  
+            currentUser={user?._id || null}
+          />
           </div>
         </div>
       )}
