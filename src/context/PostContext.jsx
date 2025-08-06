@@ -10,12 +10,19 @@ export function PostProvider({ children }) {
   const { user } = useUser();
 
   const fetchUserPosts = async () => {
+    const token = localStorage.getItem("token");
     if (!user?._id) return;
 
     try {
       setLoading(true);
       const res = await fetch(
-        `https://social-media-backend-725o.onrender.com/api/user/post/${user._id}`
+        `https://social-media-backend-725o.onrender.com/api/user/post/${user._id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       const data = await res.json();
       setPosts(data.posts);
@@ -28,7 +35,7 @@ export function PostProvider({ children }) {
 
   const fetchAllPosts = async () => {
     const token = localStorage.getItem("token");
-    
+
     try {
       setLoading(true);
       const res = await fetch(
@@ -36,7 +43,7 @@ export function PostProvider({ children }) {
         {
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,  
+            Authorization: `Bearer ${token}`,
           },
         }
       );
