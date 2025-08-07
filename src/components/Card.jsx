@@ -10,19 +10,18 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import LikeButton from "./LikeBtn";
 dayjs.extend(relativeTime);
 
-const PostCard = ({ username, avatar, time, content, image, postId, likeCount, userHasLiked, currentUser, initialLikeId }) => {
-//   const [like, setLike] = useState(0);
-//   const [liked, setLiked] = useState(false);
-// //  console.log("postid: ", postId)
-//   const handleLikes = () => {
-//     if (liked) {
-//       setLike(like - 1);
-//     } else {
-//       setLike(like + 1);
-//     }
-//     setLiked(!liked);
-//   };
-
+const PostCard = ({
+  username,
+  avatar,
+  time,
+  content,
+  image,
+  postId,
+  likeCount,
+  userHasLiked,
+  currentUser,
+  initialLikeId,
+}) => {
   function sharePost() {
     if (navigator.share) {
       navigator
@@ -48,8 +47,12 @@ const PostCard = ({ username, avatar, time, content, image, postId, likeCount, u
           className="w-12 h-12 rounded-full object-cover"
         />
         <div>
-          <h2 className="text-lg text-[#f5f5f5] font-poppins font-semibold">{username}</h2>
-          <p className="text-sm font-rubik text-[#b0b0b0]">{dayjs(time).fromNow()}</p>
+          <h2 className="text-lg text-[#f5f5f5] font-poppins font-semibold">
+            {username}
+          </h2>
+          <p className="text-sm font-rubik text-[#b0b0b0]">
+            {dayjs(time).fromNow()}
+          </p>
         </div>
       </div>
 
@@ -65,20 +68,6 @@ const PostCard = ({ username, avatar, time, content, image, postId, likeCount, u
 
       {/* Actions */}
       <div className="flex items-end justify-around mt-4 text-[#b0b0b0] text-xl">
-        {/* <button className="hover:text-[#e1306c] transition-colors duration-200">
-          {like}
-          {liked === true ? (
-            <FaHeart
-              onClick={handleLikes}
-              className="text-[#e1306c] cursor-pointer transition-transform duration-200 hover:scale-110"
-            />
-          ) : (
-            <FaRegHeart
-              onClick={handleLikes}
-              className="cursor-pointer transition-transform duration-200 hover:scale-110"
-            />
-          )}
-        </button> */}
         <LikeButton
           postId={postId}
           initialLikes={likeCount}

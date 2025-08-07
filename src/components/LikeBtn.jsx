@@ -148,7 +148,7 @@ const LikeButton = ({
   };
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center hover:text-[#e1306c] transition-colors duration-200">
       <span>{likesCount}</span>
       {liked ? (
         <FaHeart
