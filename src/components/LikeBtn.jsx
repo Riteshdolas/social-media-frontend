@@ -12,7 +12,7 @@ const LikeButton = ({
   const [likesCount, setLikesCount] = useState(initialLikes || 0);
   const [likeId, setLikeId] = useState(initialLikeId || null);
   const [loading, setLoading] = useState(false);
-
+  const token = localStorage.getItem("token");
   useEffect(() => {
     setLiked(initialLiked);
     setLikesCount(initialLikes || 0);
@@ -45,9 +45,9 @@ const LikeButton = ({
   //       const data = await res.json();
 
   //       if (res.ok) {
-  //         setLiked(data.userHasLiked);  
+  //         setLiked(data.userHasLiked);
   //         setLikeId(data._id || null);
-  //         setLikesCount(data.likesCount); 
+  //         setLikesCount(data.likesCount);
   //       } else {
   //         console.error("Failed to unlike:", data);
   //       }
@@ -82,65 +82,70 @@ const LikeButton = ({
   // };
 
   const handleLikes = async () => {
-  if (!userId || loading) return;
-  setLoading(true);
-
-  try {
-    if (liked) {
-      if (!likeId) {
-        console.error("No likeId found for unlike");
-        setLoading(false);
-        return;
-      }
-
-      const res = await fetch(
-        `https://social-media-backend-725o.onrender.com/api/user/like/${likeId}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-
-      const data = await res.json();
-
-      if (res.ok) {
-        setLiked(false);
-        setLikeId(null); // ✅ clear likeId
-        setLikesCount(data.likesCount); // ✅ update from backend
-      } else {
-        console.error("Failed to unlike:", data);
-      }
-    } else {
-      const res = await fetch(
-        `https://social-media-backend-725o.onrender.com/api/user/like`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ post_id: postId }),
-        }
-      );
-
-      const data = await res.json();
-
-      if (res.ok) {
-        setLiked(true);
-        setLikeId(data._id || null);
-        setLikesCount(data.likesCount);
-      } else {
-        console.error("Failed to like:", data);
-      }
+    if (!token) {
+      alert("you need to login to like the post");
+      return;
     }
-  } catch (err) {
-    console.error("Error updating like:", err);
-  } finally {
-    setLoading(false);
-  }
-};
+
+    if (!userId || loading) return;
+    setLoading(true);
+
+    try {
+      if (liked) {
+        if (!likeId) {
+          console.error("No likeId found for unlike");
+          setLoading(false);
+          return;
+        }
+
+        const res = await fetch(
+          `https://social-media-backend-725o.onrender.com/api/user/like/${likeId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const data = await res.json();
+
+        if (res.ok) {
+          setLiked(false);
+          setLikeId(null); // ✅ clear likeId
+          setLikesCount(data.likesCount); // ✅ update from backend
+        } else {
+          console.error("Failed to unlike:", data);
+        }
+      } else {
+        const res = await fetch(
+          `https://social-media-backend-725o.onrender.com/api/user/like`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify({ post_id: postId }),
+          }
+        );
+
+        const data = await res.json();
+
+        if (res.ok) {
+          setLiked(true);
+          setLikeId(data._id || null);
+          setLikesCount(data.likesCount);
+        } else {
+          console.error("Failed to like:", data);
+        }
+      }
+    } catch (err) {
+      console.error("Error updating like:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center">
