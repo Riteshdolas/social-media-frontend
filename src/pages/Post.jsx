@@ -26,8 +26,8 @@ function Post() {
 
   if (!loading && !user) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-xl font-semibold text-red-500">
+      <div className="flex justify-center items-center h-[90vh]">
+        <p className="text-2xl font-poppins text-[#b0b0b0]">
           You must be logged in to post.
         </p>
       </div>
