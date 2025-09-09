@@ -57,6 +57,7 @@ function Home() {
             userHasLiked={post.userHasLiked}
             initialLikeId={post.likeId} // ✅ FIXED
             currentUser={user?._id || null}
+            commentsCount={post.commentsCount}
           />
         ))
       )}

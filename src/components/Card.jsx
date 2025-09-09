@@ -8,6 +8,7 @@ import {
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import LikeButton from "./LikeBtn";
+import Comment from "../pages/Comment";
 dayjs.extend(relativeTime);
 
 const PostCard = ({
@@ -21,7 +22,17 @@ const PostCard = ({
   userHasLiked,
   currentUser,
   initialLikeId,
+  commentsCount,
 }) => {
+  const [showComments, setShowComment] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [localCommentsCount, setLocalCommentsCount] = useState(commentsCount || 0);
+
+  const handleCommentClick = () => {
+    setIsOpen(true);
+    setShowComment(true);
+  };
+
   function sharePost() {
     if (navigator.share) {
       navigator
@@ -38,59 +49,80 @@ const PostCard = ({
   }
 
   return (
-    <div className="max-w-md mt-1 mx-auto bg-[#1c1c1e] text-[#f5f5f5] shadow-lg rounded-2xl p-4 mb-6">
-      {/* Header */}
-      <div className="flex items-center space-x-4">
-        <img
-          src={avatar}
-          alt="avatar"
-          className="w-12 h-12 rounded-full object-cover"
-        />
-        <div>
-          <h2 className="text-lg text-[#f5f5f5] font-poppins font-semibold">
-            {username}
-          </h2>
-          <p className="text-sm font-rubik text-[#b0b0b0]">
-            {dayjs(time).fromNow()}
-          </p>
-        </div>
-      </div>
-
-      {/* Post Content */}
-      <div className="mt-4 font-inter text-[#f5f5f5]">{content}</div>
-
-      {/* Optional Image */}
-      {image && (
-        <div className="w-full aspect-square overflow-hidden rounded-xl mt-4">
-          <img src={image} alt="Post" className="w-full h-full object-cover" />
-        </div>
-      )}
-
-      {/* Actions */}
-      <div className="flex items-end justify-around mt-4 text-[#b0b0b0] text-xl">
-        <LikeButton
+    <>
+      {showComments && (
+        <Comment
+          isOpen={() => setIsOpen(false)}
+          onClose={() => setShowComment(false)}
           postId={postId}
-          initialLikes={likeCount}
-          initialLiked={userHasLiked}
-          initialLikeId={initialLikeId}
-          userId={currentUser}
+          username={username}
+          image={image}
+          avatar={avatar}
+          onCommentAdded={() => setLocalCommentsCount((prev) => prev + 1)}
         />
-        <button className="hover:text-blue-500 transition-colors duration-200">
-          {12}
-          <FaRegComment
-            className="cursor-pointer transition-transform duration-200 hover:scale-110"
-            onClick={() => console.log("add comment")}
+      )}
+      <div className="max-w-md mt-1 mx-auto bg-[#1c1c1e] text-[#f5f5f5] shadow-lg rounded-2xl p-4 mb-6">
+        {/* Header */}
+        <div className="flex items-center space-x-4">
+          <img
+            src={avatar}
+            alt="avatar"
+            className="w-12 h-12 rounded-full object-cover"
           />
-        </button>
-        <button className="hover:text-green-500 transition-colors duration-200">
-          {2}
-          <FaRegShareSquare
-            className="cursor-pointer transition-transform duration-200 hover:scale-110"
-            onClick={() => sharePost()}
+          <div>
+            <h2 className="text-lg text-[#f5f5f5] font-poppins font-semibold">
+              {username}
+            </h2>
+            <p className="text-sm font-rubik text-[#b0b0b0]">
+              {dayjs(time).fromNow()}
+            </p>
+          </div>
+        </div>
+
+        {/* Post Content */}
+        <div className="mt-4 font-inter text-[#f5f5f5]">{content}</div>
+
+        {/* Optional Image */}
+        {image && (
+          <div className="w-full aspect-square overflow-hidden rounded-xl mt-4">
+            <img
+              src={image}
+              alt="Post"
+              className="w-full h-full object-cover"
+            />
+          </div>
+        )}
+
+        {/* Actions */}
+        <div className="flex items-end justify-around mt-4 text-[#b0b0b0] text-xl">
+          <LikeButton
+            postId={postId}
+            initialLikes={likeCount}
+            initialLiked={userHasLiked}
+            initialLikeId={initialLikeId}
+            userId={currentUser}
           />
-        </button>
+          <button className="hover:text-blue-500 transition-colors duration-200">
+            {localCommentsCount}
+            <FaRegComment
+              className="cursor-pointer transition-transform duration-200 hover:scale-110"
+              onClick={() => {
+                setIsOpen(true);
+                setShowComment(true);
+                handleCommentClick();
+              }}
+            />
+          </button>
+          <button className="hover:text-green-500 transition-colors duration-200">
+            {""}
+            <FaRegShareSquare
+              className="cursor-pointer transition-transform duration-200 hover:scale-110"
+              onClick={() => sharePost()}
+            />
+          </button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
