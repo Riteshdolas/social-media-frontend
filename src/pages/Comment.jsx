@@ -114,7 +114,7 @@ function Comment({
           onClick={(e) => e.stopPropagation()}
           className="flex flex-col md:flex-row w-full md:h-[50%] lg:h-full md:w-[90%] lg:w-[70%]"
         >
-          <div className="h-[50%] w-full overflow-hidden md:h-full md:w-[50%]">
+          <div className="h-[45%] w-full overflow-hidden md:h-full md:w-[50%]">
             <img
               className="object-cover h-full w-full"
               src={
@@ -125,8 +125,8 @@ function Comment({
             />
           </div>
 
-          <div className="h-[50%] md:h-full flex flex-col justify-between w-full md:w-[50%] text-[#f5f5f5] bg-[#1c1c1e]">
-            <div className="md:p-0 text-xl">{username}</div>
+          <div className="h-[45%] md:h-full flex flex-col justify-between w-full md:w-[50%] text-[#f5f5f5] bg-[#1c1c1e]">
+            <div className="md:p-0 text-xl p-2">{username}</div>
             <div className="grow overflow-y-auto overflow-x-hidden no-scrollbar">
               {loading ? (
                 <>
@@ -156,7 +156,7 @@ function Comment({
               )}
             </div>
 
-            <div className="flex justify-center items-center p-5 pb-10 md:pb-0">
+            <div className="flex justify-center items-center p-5">
               <Input
                 placeholder="Add a Comment"
                 value={content}
