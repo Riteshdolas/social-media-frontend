@@ -46,8 +46,8 @@ Backend API: https://social-media-backend-725o.onrender.com/
 - ✅ Create posts with image upload
 - ✅ View profile and edit user info
 - ✅ View other users and search users
-- ⚠️ Like feature (UI only – backend not fully implemented)
-- ⏳ Comments, story viewer, messaging – coming soon
+- ✅️ Like & Comment feature
+- ⏳ story viewer, messaging – coming soon
 
 ⚠️ Note: The frontend is still in development — features like messaging, story viewer, and UI enhancements will be added soon.
 
