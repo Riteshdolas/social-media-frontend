@@ -84,7 +84,7 @@ const PostCard = ({
 
         {/* Optional Image */}
         {image && (
-          <div className="w-full aspect-square overflow-hidden rounded-xl mt-4">
+          <div className="w-full rounded-xl mt-4">
             <img
               src={image}
               alt="Post"
