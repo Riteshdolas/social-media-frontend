@@ -1,4 +1,5 @@
 import PostCard from "../components/Card";
+import PostSkeleton from "../components/CardSkeletonLoader";
 import Stories from "../components/Stories";
 import { usePosts } from "../context/PostContext";
 import { useUser } from "../context/UserContext";
@@ -17,8 +18,12 @@ function Home() {
       </div>
       <Stories />
       {postLoading ? (
-        <div className="col-span-full flex justify-center items-center py-10">
-          <div className="loader border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+        <div className="flex flex-col items-center">
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
+          <PostSkeleton />
         </div>
       ) : allPosts.length === 0 ? (
         <div className="col-span-full text-[#f5f5f5] text-center text-sm opacity-60">
